@@ -1,0 +1,1966 @@
+(db) [root@localhost hcj_undergraduate_code]# python train.py
+CONFIG_FILE: 
+DATA:
+  DATALOADER:
+    NUM_WORKERS: 30
+    TRAIN_BATCH_SIZE: 21
+    TRAIN_SHUFFLE: True
+    VAL_BATCH_SIZE: 21
+    VAL_SHUFFLE: False
+  DATASET:
+    train_csv_file: /root/hcj/workspace/cutImage/TrainDataFinal/image_21.csv
+    train_mask_dir: /root/hcj/workspace/cutImage/TrainDataFinal/label/
+    train_root_dir: /root/hcj/workspace/cutImage/TrainDataFinal/image/
+    val_csv_file: /root/hcj/workspace/cutImage/ValData/image_20.csv
+    val_mask_dir: /root/hcj/workspace/cutImage/ValData/label/
+    val_root_dir: /root/hcj/workspace/cutImage/ValData/image/
+  TRANSFORMS:
+    ENABLE_NORMALIZE: True
+    ENABLE_RANDOMCHOICE: True
+    ENABLE_RANDOM_CROP: True
+    Normalize: [(0.485, 0.456, 0.406), (0.229, 0.224, 0.225)]
+    RandomChoice: 1
+    RandomCrop: [1, (512, 512)]
+    TRAIN:
+      GaussianBlur: [0.1, 2]
+      RandomChoce: [0.01, 0.01, 0.01, 0.0]
+      RandomHorizontalFlip: [0.5]
+      RandomVerticalFlip: [0.5]
+      Shift_Padding: [0.1, 0.1, 0.1]
+    VAL:
+      
+ENGINE:
+  
+LOG_PERIOD: 0.03
+MODEL:
+  DEVICE: cuda:0
+  LOAD_PATH: /root/hcj/workspace/test1/models/resnet101-5d3b4d8f.pth
+  NET_NAME: deeplabv3plus_resnet101
+OUTPUT:
+  DIR_NAME: ./output/
+  ENABLE_RECODER: True
+  N_SAVED: 5
+  TRAIN_LOSS: False
+  TRAIN_METRICS: False
+  VAL_LOSS: False
+  VAL_METRICS: True
+SOLVER:
+  Adam_weight_decay: 0
+  CRITERION: LabelSmoothing
+  ENABLE_LR_SCHEDULER: True
+  LEARNING_RATE: 0.0001
+  LR_SCHEDULER: CosineAnnealingLR
+  LR_SCHEDULER_FACTOR: 0.3333333333333333
+  LR_SCHEDULER_PATIENCE: 5
+  LR_SCHEDULER_REPEAT: 6
+  MAX_EPOCHS: 40
+  OPTIMIZER_NAME: Adam
+  SGD_MOMENTUM: 0.9
+  T_max: 12
+TAG: deeplabv3+
+TESTS:
+  
+TOOLS:
+  batch_size: 24
+  csv_file_3: /root/hcj/workspace/cutImage/TestData/image_11.csv
+  csv_file_4: /home/LinHonghui/Datasets/tianchi_jinwei_AI2019/trainset/round2/w1024s1024/val_image_4.csv
+  image_n: 3
+  num_workers: 30
+  root_dir_3_4: /root/hcj/workspace/cutImage/TestData/image/
+  save_path: /root/hcj/workspace/test1/hcj_undergraduate_code/output/savedResult/
+  shuffle: False
+  zeros_3: (68363, 18576)
+  zeros_4: (29003, 35055)
+  zeros_5: (20115, 43073)
+  zeros_6: (21247, 62806)
+UTILS:
+  METRICS: Label_Accuracy_delete_edge
+VAL_PERIOD: 1.0
+load pretrained ResNet101 model
+/root/hcj/workspace/test1/hcj_undergraduate_code/data/transform/opencv_transforms.py:270: UserWarning: Saturation jitter enabled. Will slow down loading immensely.
+  warnings.warn('Saturation jitter enabled. Will slow down loading immensely.')
+[RandomCrop(output_size=(512, 512)), RandomChoice(p=1), ToTensor(), Normalize(mean=(0.485, 0.456, 0.406),std=(0.229, 0.224, 0.225))]
+[RandomCrop(output_size=(512, 512)), ToTensor(), Normalize(mean=(0.485, 0.456, 0.406),std=(0.229, 0.224, 0.225))]
+INFO:Trainer:Start training
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=40.
+/root/anaconda3/envs/db/lib/python3.6/site-packages/torch/nn/functional.py:2973: UserWarning: Default upsampling behavior when mode=bilinear is changed to align_corners=False since 0.4.0. Please specify align_corners=True if the old behavior is desired. See the documentation of nn.Upsample for details.
+  "See the documentation of nn.Upsample for details.".format(mode))
+INFO:Trainer:Epoch[1] Iteration[1/395] Loss 1.6292369
+INFO:Trainer:Epoch[1] Iteration[12/395] Loss 1.5773057
+INFO:Trainer:Epoch[1] Iteration[23/395] Loss 1.4377816
+INFO:Trainer:Epoch[1] Iteration[34/395] Loss 1.3085812
+INFO:Trainer:Epoch[1] Iteration[45/395] Loss 1.1929447
+INFO:Trainer:Epoch[1] Iteration[56/395] Loss 1.0738193
+INFO:Trainer:Epoch[1] Iteration[67/395] Loss 0.9762920
+INFO:Trainer:Epoch[1] Iteration[78/395] Loss 0.8895392
+INFO:Trainer:Epoch[1] Iteration[89/395] Loss 0.8152195
+INFO:Trainer:Epoch[1] Iteration[100/395] Loss 0.7476336
+INFO:Trainer:Epoch[1] Iteration[111/395] Loss 0.6972273
+INFO:Trainer:Epoch[1] Iteration[122/395] Loss 0.6465677
+INFO:Trainer:Epoch[1] Iteration[133/395] Loss 0.6090368
+INFO:Trainer:Epoch[1] Iteration[144/395] Loss 0.5800567
+INFO:Trainer:Epoch[1] Iteration[155/395] Loss 0.5432416
+INFO:Trainer:Epoch[1] Iteration[166/395] Loss 0.5140388
+INFO:Trainer:Epoch[1] Iteration[177/395] Loss 0.5024592
+INFO:Trainer:Epoch[1] Iteration[188/395] Loss 0.4782323
+INFO:Trainer:Epoch[1] Iteration[199/395] Loss 0.4630159
+INFO:Trainer:Epoch[1] Iteration[210/395] Loss 0.4623109
+INFO:Trainer:Epoch[1] Iteration[221/395] Loss 0.4489283
+INFO:Trainer:Epoch[1] Iteration[232/395] Loss 0.4514811
+INFO:Trainer:Epoch[1] Iteration[243/395] Loss 0.4334003
+INFO:Trainer:Epoch[1] Iteration[254/395] Loss 0.4364296
+INFO:Trainer:Epoch[1] Iteration[265/395] Loss 0.4359163
+INFO:Trainer:Epoch[1] Iteration[276/395] Loss 0.4226533
+INFO:Trainer:Epoch[1] Iteration[287/395] Loss 0.4025140
+INFO:Trainer:Epoch[1] Iteration[298/395] Loss 0.4047613
+INFO:Trainer:Epoch[1] Iteration[309/395] Loss 0.4080559
+INFO:Trainer:Epoch[1] Iteration[320/395] Loss 0.4052006
+INFO:Trainer:Epoch[1] Iteration[331/395] Loss 0.3900586
+INFO:Trainer:Epoch[1] Iteration[342/395] Loss 0.3913574
+INFO:Trainer:Epoch[1] Iteration[353/395] Loss 0.3977853
+INFO:Trainer:Epoch[1] Iteration[364/395] Loss 0.3902990
+INFO:Trainer:Epoch[1] Iteration[375/395] Loss 0.3876380
+INFO:Trainer:Epoch[1] Iteration[386/395] Loss 0.3807490
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:16
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:17
+INFO:Trainer:Validation Result - Epoch: 1 Avg Pixel Accuracy: 0.6619155 
+9.829646168532197e-05 0.0001
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:11:38
+epoch: 1
+INFO:Trainer:Epoch 1 done.Time per batch: 614.918[s] Speed: 13.5[samples/s]
+INFO:Trainer:Epoch[2] Iteration[2/395] Loss 0.2454806
+INFO:Trainer:Epoch[2] Iteration[13/395] Loss 0.2716317
+INFO:Trainer:Epoch[2] Iteration[24/395] Loss 0.2910160
+INFO:Trainer:Epoch[2] Iteration[35/395] Loss 0.3075944
+INFO:Trainer:Epoch[2] Iteration[46/395] Loss 0.3080042
+INFO:Trainer:Epoch[2] Iteration[57/395] Loss 0.3270698
+INFO:Trainer:Epoch[2] Iteration[68/395] Loss 0.3286195
+INFO:Trainer:Epoch[2] Iteration[79/395] Loss 0.3352741
+INFO:Trainer:Epoch[2] Iteration[90/395] Loss 0.3351697
+INFO:Trainer:Epoch[2] Iteration[101/395] Loss 0.3343624
+INFO:Trainer:Epoch[2] Iteration[112/395] Loss 0.3297268
+INFO:Trainer:Epoch[2] Iteration[123/395] Loss 0.3245070
+INFO:Trainer:Epoch[2] Iteration[134/395] Loss 0.3295012
+INFO:Trainer:Epoch[2] Iteration[145/395] Loss 0.3243841
+INFO:Trainer:Epoch[2] Iteration[156/395] Loss 0.3262616
+INFO:Trainer:Epoch[2] Iteration[167/395] Loss 0.3300564
+INFO:Trainer:Epoch[2] Iteration[178/395] Loss 0.3212695
+INFO:Trainer:Epoch[2] Iteration[189/395] Loss 0.3237467
+INFO:Trainer:Epoch[2] Iteration[200/395] Loss 0.3244943
+INFO:Trainer:Epoch[2] Iteration[211/395] Loss 0.3217581
+INFO:Trainer:Epoch[2] Iteration[222/395] Loss 0.3286334
+INFO:Trainer:Epoch[2] Iteration[233/395] Loss 0.3221761
+INFO:Trainer:Epoch[2] Iteration[244/395] Loss 0.3330520
+INFO:Trainer:Epoch[2] Iteration[255/395] Loss 0.3386500
+INFO:Trainer:Epoch[2] Iteration[266/395] Loss 0.3387858
+INFO:Trainer:Epoch[2] Iteration[277/395] Loss 0.3421080
+INFO:Trainer:Epoch[2] Iteration[288/395] Loss 0.3326601
+INFO:Trainer:Epoch[2] Iteration[299/395] Loss 0.3258191
+INFO:Trainer:Epoch[2] Iteration[310/395] Loss 0.3242959
+INFO:Trainer:Epoch[2] Iteration[321/395] Loss 0.3239003
+INFO:Trainer:Epoch[2] Iteration[332/395] Loss 0.3241088
+INFO:Trainer:Epoch[2] Iteration[343/395] Loss 0.3322952
+INFO:Trainer:Epoch[2] Iteration[354/395] Loss 0.3298524
+INFO:Trainer:Epoch[2] Iteration[365/395] Loss 0.3306831
+INFO:Trainer:Epoch[2] Iteration[376/395] Loss 0.3234857
+INFO:Trainer:Epoch[2] Iteration[387/395] Loss 0.3255216
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:18
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:19
+INFO:Trainer:Validation Result - Epoch: 2 Avg Pixel Accuracy: 0.6444602 
+9.330194006220303e-05 9.829646168532197e-05
+INFO:ignite.engine.engine.Engine:Epoch[2] Complete. Time taken: 00:12:23
+epoch: 2
+INFO:Trainer:Epoch 2 done.Time per batch: 656.701[s] Speed: 12.6[samples/s]
+INFO:Trainer:Epoch[3] Iteration[3/395] Loss 0.2255978
+INFO:Trainer:Epoch[3] Iteration[14/395] Loss 0.2426026
+INFO:Trainer:Epoch[3] Iteration[25/395] Loss 0.2522545
+INFO:Trainer:Epoch[3] Iteration[36/395] Loss 0.2592642
+INFO:Trainer:Epoch[3] Iteration[47/395] Loss 0.2753669
+INFO:Trainer:Epoch[3] Iteration[58/395] Loss 0.2856437
+INFO:Trainer:Epoch[3] Iteration[69/395] Loss 0.2780391
+INFO:Trainer:Epoch[3] Iteration[80/395] Loss 0.2833725
+INFO:Trainer:Epoch[3] Iteration[91/395] Loss 0.2952109
+INFO:Trainer:Epoch[3] Iteration[102/395] Loss 0.3066260
+INFO:Trainer:Epoch[3] Iteration[113/395] Loss 0.3094139
+INFO:Trainer:Epoch[3] Iteration[124/395] Loss 0.3105029
+INFO:Trainer:Epoch[3] Iteration[135/395] Loss 0.3143972
+INFO:Trainer:Epoch[3] Iteration[146/395] Loss 0.3055977
+INFO:Trainer:Epoch[3] Iteration[157/395] Loss 0.2973418
+INFO:Trainer:Epoch[3] Iteration[168/395] Loss 0.2922405
+INFO:Trainer:Epoch[3] Iteration[179/395] Loss 0.2931940
+INFO:Trainer:Epoch[3] Iteration[190/395] Loss 0.2999732
+INFO:Trainer:Epoch[3] Iteration[201/395] Loss 0.2903016
+INFO:Trainer:Epoch[3] Iteration[212/395] Loss 0.2975450
+INFO:Trainer:Epoch[3] Iteration[223/395] Loss 0.2923313
+INFO:Trainer:Epoch[3] Iteration[234/395] Loss 0.2956988
+INFO:Trainer:Epoch[3] Iteration[245/395] Loss 0.2843578
+INFO:Trainer:Epoch[3] Iteration[256/395] Loss 0.2867048
+INFO:Trainer:Epoch[3] Iteration[267/395] Loss 0.2837374
+INFO:Trainer:Epoch[3] Iteration[278/395] Loss 0.2872086
+INFO:Trainer:Epoch[3] Iteration[289/395] Loss 0.2890988
+INFO:Trainer:Epoch[3] Iteration[300/395] Loss 0.2823668
+INFO:Trainer:Epoch[3] Iteration[311/395] Loss 0.2914967
+INFO:Trainer:Epoch[3] Iteration[322/395] Loss 0.2927310
+INFO:Trainer:Epoch[3] Iteration[333/395] Loss 0.2964962
+INFO:Trainer:Epoch[3] Iteration[344/395] Loss 0.2957814
+INFO:Trainer:Epoch[3] Iteration[355/395] Loss 0.3007074
+INFO:Trainer:Epoch[3] Iteration[366/395] Loss 0.2965467
+INFO:Trainer:Epoch[3] Iteration[377/395] Loss 0.3073627
+INFO:Trainer:Epoch[3] Iteration[388/395] Loss 0.3052366
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:16
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:17
+INFO:Trainer:Validation Result - Epoch: 3 Avg Pixel Accuracy: 0.6742092 
+8.535680352542144e-05 9.330194006220303e-05
+INFO:ignite.engine.engine.Engine:Epoch[3] Complete. Time taken: 00:12:11
+epoch: 3
+INFO:Trainer:Epoch 3 done.Time per batch: 646.348[s] Speed: 12.8[samples/s]
+INFO:Trainer:Epoch[4] Iteration[4/395] Loss 0.1546720
+INFO:Trainer:Epoch[4] Iteration[15/395] Loss 0.1765357
+INFO:Trainer:Epoch[4] Iteration[26/395] Loss 0.1971360
+INFO:Trainer:Epoch[4] Iteration[37/395] Loss 0.2116144
+INFO:Trainer:Epoch[4] Iteration[48/395] Loss 0.2166228
+INFO:Trainer:Epoch[4] Iteration[59/395] Loss 0.2290730
+INFO:Trainer:Epoch[4] Iteration[70/395] Loss 0.2316482
+INFO:Trainer:Epoch[4] Iteration[81/395] Loss 0.2459581
+INFO:Trainer:Epoch[4] Iteration[92/395] Loss 0.2588272
+INFO:Trainer:Epoch[4] Iteration[103/395] Loss 0.2649971
+INFO:Trainer:Epoch[4] Iteration[114/395] Loss 0.2689579
+INFO:Trainer:Epoch[4] Iteration[125/395] Loss 0.2714527
+INFO:Trainer:Epoch[4] Iteration[136/395] Loss 0.2713619
+INFO:Trainer:Epoch[4] Iteration[147/395] Loss 0.2748356
+INFO:Trainer:Epoch[4] Iteration[158/395] Loss 0.2765053
+INFO:Trainer:Epoch[4] Iteration[169/395] Loss 0.2745249
+INFO:Trainer:Epoch[4] Iteration[180/395] Loss 0.2766777
+INFO:Trainer:Epoch[4] Iteration[191/395] Loss 0.2843877
+INFO:Trainer:Epoch[4] Iteration[202/395] Loss 0.2786128
+INFO:Trainer:Epoch[4] Iteration[213/395] Loss 0.2891411
+INFO:Trainer:Epoch[4] Iteration[224/395] Loss 0.2924339
+INFO:Trainer:Epoch[4] Iteration[235/395] Loss 0.2879832
+INFO:Trainer:Epoch[4] Iteration[246/395] Loss 0.2840837
+INFO:Trainer:Epoch[4] Iteration[257/395] Loss 0.2838315
+INFO:Trainer:Epoch[4] Iteration[268/395] Loss 0.2805578
+INFO:Trainer:Epoch[4] Iteration[279/395] Loss 0.2871197
+INFO:Trainer:Epoch[4] Iteration[290/395] Loss 0.2921434
+INFO:Trainer:Epoch[4] Iteration[301/395] Loss 0.2834271
+INFO:Trainer:Epoch[4] Iteration[312/395] Loss 0.2858729
+INFO:Trainer:Epoch[4] Iteration[323/395] Loss 0.2834295
+INFO:Trainer:Epoch[4] Iteration[334/395] Loss 0.2797079
+INFO:Trainer:Epoch[4] Iteration[345/395] Loss 0.2825386
+INFO:Trainer:Epoch[4] Iteration[356/395] Loss 0.2820840
+INFO:Trainer:Epoch[4] Iteration[367/395] Loss 0.2853983
+INFO:Trainer:Epoch[4] Iteration[378/395] Loss 0.2837302
+INFO:Trainer:Epoch[4] Iteration[389/395] Loss 0.2827604
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:17
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:18
+INFO:Trainer:Validation Result - Epoch: 4 Avg Pixel Accuracy: 0.6896188 
+7.50025e-05 8.535680352542144e-05
+INFO:ignite.engine.engine.Engine:Epoch[4] Complete. Time taken: 00:12:05
+epoch: 4
+INFO:Trainer:Epoch 4 done.Time per batch: 639.260[s] Speed: 13.0[samples/s]
+INFO:Trainer:Epoch[5] Iteration[5/395] Loss 0.4794887
+INFO:Trainer:Epoch[5] Iteration[16/395] Loss 0.4456849
+INFO:Trainer:Epoch[5] Iteration[27/395] Loss 0.4182213
+INFO:Trainer:Epoch[5] Iteration[38/395] Loss 0.3880588
+INFO:Trainer:Epoch[5] Iteration[49/395] Loss 0.3571952
+INFO:Trainer:Epoch[5] Iteration[60/395] Loss 0.3418969
+INFO:Trainer:Epoch[5] Iteration[71/395] Loss 0.3250922
+INFO:Trainer:Epoch[5] Iteration[82/395] Loss 0.3238476
+INFO:Trainer:Epoch[5] Iteration[93/395] Loss 0.3126633
+INFO:Trainer:Epoch[5] Iteration[104/395] Loss 0.3136414
+INFO:Trainer:Epoch[5] Iteration[115/395] Loss 0.2999498
+INFO:Trainer:Epoch[5] Iteration[126/395] Loss 0.2959819
+INFO:Trainer:Epoch[5] Iteration[137/395] Loss 0.2924855
+INFO:Trainer:Epoch[5] Iteration[148/395] Loss 0.2841393
+INFO:Trainer:Epoch[5] Iteration[159/395] Loss 0.2803485
+INFO:Trainer:Epoch[5] Iteration[170/395] Loss 0.2861940
+INFO:Trainer:Epoch[5] Iteration[181/395] Loss 0.2895979
+INFO:Trainer:Epoch[5] Iteration[192/395] Loss 0.2866587
+INFO:Trainer:Epoch[5] Iteration[203/395] Loss 0.2717035
+INFO:Trainer:Epoch[5] Iteration[214/395] Loss 0.2656927
+INFO:Trainer:Epoch[5] Iteration[225/395] Loss 0.2753837
+INFO:Trainer:Epoch[5] Iteration[236/395] Loss 0.2695268
+INFO:Trainer:Epoch[5] Iteration[247/395] Loss 0.2656395
+INFO:Trainer:Epoch[5] Iteration[258/395] Loss 0.2587834
+INFO:Trainer:Epoch[5] Iteration[269/395] Loss 0.2614053
+INFO:Trainer:Epoch[5] Iteration[280/395] Loss 0.2670943
+INFO:Trainer:Epoch[5] Iteration[291/395] Loss 0.2662314
+INFO:Trainer:Epoch[5] Iteration[302/395] Loss 0.2683375
+INFO:Trainer:Epoch[5] Iteration[313/395] Loss 0.2686423
+INFO:Trainer:Epoch[5] Iteration[324/395] Loss 0.2625682
+INFO:Trainer:Epoch[5] Iteration[335/395] Loss 0.2598115
+INFO:Trainer:Epoch[5] Iteration[346/395] Loss 0.2570107
+INFO:Trainer:Epoch[5] Iteration[357/395] Loss 0.2667147
+INFO:Trainer:Epoch[5] Iteration[368/395] Loss 0.2640017
+INFO:Trainer:Epoch[5] Iteration[379/395] Loss 0.2591205
+INFO:Trainer:Epoch[5] Iteration[390/395] Loss 0.2675209
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:17
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:18
+INFO:Trainer:Validation Result - Epoch: 5 Avg Pixel Accuracy: 0.7030398 
+6.294465815990053e-05 7.50025e-05
+INFO:ignite.engine.engine.Engine:Epoch[5] Complete. Time taken: 00:12:50
+epoch: 5
+INFO:Trainer:Epoch 5 done.Time per batch: 684.949[s] Speed: 12.1[samples/s]
+INFO:Trainer:Epoch[6] Iteration[6/395] Loss 0.2385964
+INFO:Trainer:Epoch[6] Iteration[17/395] Loss 0.2422244
+INFO:Trainer:Epoch[6] Iteration[28/395] Loss 0.2496334
+INFO:Trainer:Epoch[6] Iteration[39/395] Loss 0.2560401
+INFO:Trainer:Epoch[6] Iteration[50/395] Loss 0.2616540
+INFO:Trainer:Epoch[6] Iteration[61/395] Loss 0.2484742
+INFO:Trainer:Epoch[6] Iteration[72/395] Loss 0.2580143
+INFO:Trainer:Epoch[6] Iteration[83/395] Loss 0.2579325
+INFO:Trainer:Epoch[6] Iteration[94/395] Loss 0.2518657
+INFO:Trainer:Epoch[6] Iteration[105/395] Loss 0.2461032
+INFO:Trainer:Epoch[6] Iteration[116/395] Loss 0.2448074
+INFO:Trainer:Epoch[6] Iteration[127/395] Loss 0.2400457
+INFO:Trainer:Epoch[6] Iteration[138/395] Loss 0.2409160
+INFO:Trainer:Epoch[6] Iteration[149/395] Loss 0.2522741
+INFO:Trainer:Epoch[6] Iteration[160/395] Loss 0.2537825
+INFO:Trainer:Epoch[6] Iteration[171/395] Loss 0.2560818
+INFO:Trainer:Epoch[6] Iteration[182/395] Loss 0.2525869
+INFO:Trainer:Epoch[6] Iteration[193/395] Loss 0.2496738
+INFO:Trainer:Epoch[6] Iteration[204/395] Loss 0.2439369
+INFO:Trainer:Epoch[6] Iteration[215/395] Loss 0.2514198
+INFO:Trainer:Epoch[6] Iteration[226/395] Loss 0.2507260
+INFO:Trainer:Epoch[6] Iteration[237/395] Loss 0.2499530
+INFO:Trainer:Epoch[6] Iteration[248/395] Loss 0.2531957
+INFO:Trainer:Epoch[6] Iteration[259/395] Loss 0.2468920
+INFO:Trainer:Epoch[6] Iteration[270/395] Loss 0.2479443
+INFO:Trainer:Epoch[6] Iteration[281/395] Loss 0.2418160
+INFO:Trainer:Epoch[6] Iteration[292/395] Loss 0.2405097
+INFO:Trainer:Epoch[6] Iteration[303/395] Loss 0.2424406
+INFO:Trainer:Epoch[6] Iteration[314/395] Loss 0.2427120
+INFO:Trainer:Epoch[6] Iteration[325/395] Loss 0.2474842
+INFO:Trainer:Epoch[6] Iteration[336/395] Loss 0.2435574
+INFO:Trainer:Epoch[6] Iteration[347/395] Loss 0.2442886
+INFO:Trainer:Epoch[6] Iteration[358/395] Loss 0.2431820
+INFO:Trainer:Epoch[6] Iteration[369/395] Loss 0.2512583
+INFO:Trainer:Epoch[6] Iteration[380/395] Loss 0.2522843
+INFO:Trainer:Epoch[6] Iteration[391/395] Loss 0.2539702
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:18
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:19
+INFO:Trainer:Validation Result - Epoch: 6 Avg Pixel Accuracy: 0.7079460 
+5.000500000000001e-05 6.294465815990053e-05
+INFO:ignite.engine.engine.Engine:Epoch[6] Complete. Time taken: 00:12:43
+epoch: 6
+INFO:Trainer:Epoch 6 done.Time per batch: 677.046[s] Speed: 12.3[samples/s]
+INFO:Trainer:Epoch[7] Iteration[7/395] Loss 0.2014933
+INFO:Trainer:Epoch[7] Iteration[18/395] Loss 0.2117146
+INFO:Trainer:Epoch[7] Iteration[29/395] Loss 0.2173748
+INFO:Trainer:Epoch[7] Iteration[40/395] Loss 0.2214936
+INFO:Trainer:Epoch[7] Iteration[51/395] Loss 0.2286995
+INFO:Trainer:Epoch[7] Iteration[62/395] Loss 0.2285824
+INFO:Trainer:Epoch[7] Iteration[73/395] Loss 0.2210661
+INFO:Trainer:Epoch[7] Iteration[84/395] Loss 0.2226173
+INFO:Trainer:Epoch[7] Iteration[95/395] Loss 0.2253162
+INFO:Trainer:Epoch[7] Iteration[106/395] Loss 0.2367314
+INFO:Trainer:Epoch[7] Iteration[117/395] Loss 0.2324106
+INFO:Trainer:Epoch[7] Iteration[128/395] Loss 0.2374674
+INFO:Trainer:Epoch[7] Iteration[139/395] Loss 0.2437818
+INFO:Trainer:Epoch[7] Iteration[150/395] Loss 0.2449896
+INFO:Trainer:Epoch[7] Iteration[161/395] Loss 0.2496617
+INFO:Trainer:Epoch[7] Iteration[172/395] Loss 0.2500474
+INFO:Trainer:Epoch[7] Iteration[183/395] Loss 0.2475007
+INFO:Trainer:Epoch[7] Iteration[194/395] Loss 0.2454458
+INFO:Trainer:Epoch[7] Iteration[205/395] Loss 0.2492856
+INFO:Trainer:Epoch[7] Iteration[216/395] Loss 0.2436050
+INFO:Trainer:Epoch[7] Iteration[227/395] Loss 0.2518118
+INFO:Trainer:Epoch[7] Iteration[238/395] Loss 0.2483328
+INFO:Trainer:Epoch[7] Iteration[249/395] Loss 0.2545147
+INFO:Trainer:Epoch[7] Iteration[260/395] Loss 0.2551479
+INFO:Trainer:Epoch[7] Iteration[271/395] Loss 0.2496080
+INFO:Trainer:Epoch[7] Iteration[282/395] Loss 0.2513771
+INFO:Trainer:Epoch[7] Iteration[293/395] Loss 0.2523808
+INFO:Trainer:Epoch[7] Iteration[304/395] Loss 0.2507494
+INFO:Trainer:Epoch[7] Iteration[315/395] Loss 0.2427124
+INFO:Trainer:Epoch[7] Iteration[326/395] Loss 0.2450228
+INFO:Trainer:Epoch[7] Iteration[337/395] Loss 0.2420814
+INFO:Trainer:Epoch[7] Iteration[348/395] Loss 0.2436823
+INFO:Trainer:Epoch[7] Iteration[359/395] Loss 0.2409941
+INFO:Trainer:Epoch[7] Iteration[370/395] Loss 0.2451808
+INFO:Trainer:Epoch[7] Iteration[381/395] Loss 0.2445924
+INFO:Trainer:Epoch[7] Iteration[392/395] Loss 0.2470180
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:17
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:19
+INFO:Trainer:Validation Result - Epoch: 7 Avg Pixel Accuracy: 0.7159000 
+3.706534184009949e-05 5.000500000000001e-05
+INFO:ignite.engine.engine.Engine:Epoch[7] Complete. Time taken: 00:12:00
+epoch: 7
+INFO:Trainer:Epoch 7 done.Time per batch: 633.685[s] Speed: 13.1[samples/s]
+INFO:Trainer:Epoch[8] Iteration[8/395] Loss 0.2410803
+INFO:Trainer:Epoch[8] Iteration[19/395] Loss 0.2422969
+INFO:Trainer:Epoch[8] Iteration[30/395] Loss 0.2393870
+INFO:Trainer:Epoch[8] Iteration[41/395] Loss 0.2336762
+INFO:Trainer:Epoch[8] Iteration[52/395] Loss 0.2346634
+INFO:Trainer:Epoch[8] Iteration[63/395] Loss 0.2313202
+INFO:Trainer:Epoch[8] Iteration[74/395] Loss 0.2272950
+INFO:Trainer:Epoch[8] Iteration[85/395] Loss 0.2329809
+INFO:Trainer:Epoch[8] Iteration[96/395] Loss 0.2346696
+INFO:Trainer:Epoch[8] Iteration[107/395] Loss 0.2293374
+INFO:Trainer:Epoch[8] Iteration[118/395] Loss 0.2311486
+INFO:Trainer:Epoch[8] Iteration[129/395] Loss 0.2233455
+INFO:Trainer:Epoch[8] Iteration[140/395] Loss 0.2241104
+INFO:Trainer:Epoch[8] Iteration[151/395] Loss 0.2202656
+INFO:Trainer:Epoch[8] Iteration[162/395] Loss 0.2209422
+INFO:Trainer:Epoch[8] Iteration[173/395] Loss 0.2196954
+INFO:Trainer:Epoch[8] Iteration[184/395] Loss 0.2218259
+INFO:Trainer:Epoch[8] Iteration[195/395] Loss 0.2174630
+INFO:Trainer:Epoch[8] Iteration[206/395] Loss 0.2149768
+INFO:Trainer:Epoch[8] Iteration[217/395] Loss 0.2151807
+INFO:Trainer:Epoch[8] Iteration[228/395] Loss 0.2193904
+INFO:Trainer:Epoch[8] Iteration[239/395] Loss 0.2224975
+INFO:Trainer:Epoch[8] Iteration[250/395] Loss 0.2238316
+INFO:Trainer:Epoch[8] Iteration[261/395] Loss 0.2229322
+INFO:Trainer:Epoch[8] Iteration[272/395] Loss 0.2185546
+INFO:Trainer:Epoch[8] Iteration[283/395] Loss 0.2229859
+INFO:Trainer:Epoch[8] Iteration[294/395] Loss 0.2264917
+INFO:Trainer:Epoch[8] Iteration[305/395] Loss 0.2304067
+INFO:Trainer:Epoch[8] Iteration[316/395] Loss 0.2248551
+INFO:Trainer:Epoch[8] Iteration[327/395] Loss 0.2164522
+INFO:Trainer:Epoch[8] Iteration[338/395] Loss 0.2206163
+INFO:Trainer:Epoch[8] Iteration[349/395] Loss 0.2197862
+INFO:Trainer:Epoch[8] Iteration[360/395] Loss 0.2196274
+INFO:Trainer:Epoch[8] Iteration[371/395] Loss 0.2177081
+INFO:Trainer:Epoch[8] Iteration[382/395] Loss 0.2261260
+INFO:Trainer:Epoch[8] Iteration[393/395] Loss 0.2296966
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:17
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:18
+INFO:Trainer:Validation Result - Epoch: 8 Avg Pixel Accuracy: 0.7066874 
+2.500750000000002e-05 3.706534184009949e-05
+INFO:ignite.engine.engine.Engine:Epoch[8] Complete. Time taken: 00:12:06
+epoch: 8
+INFO:Trainer:Epoch 8 done.Time per batch: 641.142[s] Speed: 12.9[samples/s]
+INFO:Trainer:Epoch[9] Iteration[9/395] Loss 0.2787566
+INFO:Trainer:Epoch[9] Iteration[20/395] Loss 0.2656018
+INFO:Trainer:Epoch[9] Iteration[31/395] Loss 0.2549106
+INFO:Trainer:Epoch[9] Iteration[42/395] Loss 0.2519476
+INFO:Trainer:Epoch[9] Iteration[53/395] Loss 0.2483316
+INFO:Trainer:Epoch[9] Iteration[64/395] Loss 0.2472694
+INFO:Trainer:Epoch[9] Iteration[75/395] Loss 0.2418668
+INFO:Trainer:Epoch[9] Iteration[86/395] Loss 0.2399041
+INFO:Trainer:Epoch[9] Iteration[97/395] Loss 0.2429860
+INFO:Trainer:Epoch[9] Iteration[108/395] Loss 0.2430103
+INFO:Trainer:Epoch[9] Iteration[119/395] Loss 0.2414745
+INFO:Trainer:Epoch[9] Iteration[130/395] Loss 0.2297654
+INFO:Trainer:Epoch[9] Iteration[141/395] Loss 0.2240811
+INFO:Trainer:Epoch[9] Iteration[152/395] Loss 0.2224439
+INFO:Trainer:Epoch[9] Iteration[163/395] Loss 0.2183036
+INFO:Trainer:Epoch[9] Iteration[174/395] Loss 0.2216917
+INFO:Trainer:Epoch[9] Iteration[185/395] Loss 0.2206970
+INFO:Trainer:Epoch[9] Iteration[196/395] Loss 0.2172520
+INFO:Trainer:Epoch[9] Iteration[207/395] Loss 0.2108277
+INFO:Trainer:Epoch[9] Iteration[218/395] Loss 0.2141708
+INFO:Trainer:Epoch[9] Iteration[229/395] Loss 0.2200850
+INFO:Trainer:Epoch[9] Iteration[240/395] Loss 0.2185084
+INFO:Trainer:Epoch[9] Iteration[251/395] Loss 0.2161078
+INFO:Trainer:Epoch[9] Iteration[262/395] Loss 0.2148158
+INFO:Trainer:Epoch[9] Iteration[273/395] Loss 0.2197525
+INFO:Trainer:Epoch[9] Iteration[284/395] Loss 0.2155189
+INFO:Trainer:Epoch[9] Iteration[295/395] Loss 0.2143896
+INFO:Trainer:Epoch[9] Iteration[306/395] Loss 0.2169460
+INFO:Trainer:Epoch[9] Iteration[317/395] Loss 0.2159642
+INFO:Trainer:Epoch[9] Iteration[328/395] Loss 0.2268492
+INFO:Trainer:Epoch[9] Iteration[339/395] Loss 0.2216183
+INFO:Trainer:Epoch[9] Iteration[350/395] Loss 0.2177744
+INFO:Trainer:Epoch[9] Iteration[361/395] Loss 0.2164856
+INFO:Trainer:Epoch[9] Iteration[372/395] Loss 0.2136746
+INFO:Trainer:Epoch[9] Iteration[383/395] Loss 0.2116510
+INFO:Trainer:Epoch[9] Iteration[394/395] Loss 0.2094066
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:20
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:21
+INFO:Trainer:Validation Result - Epoch: 9 Avg Pixel Accuracy: 0.7121209 
+1.4653196474578565e-05 2.500750000000002e-05
+INFO:ignite.engine.engine.Engine:Epoch[9] Complete. Time taken: 00:12:03
+epoch: 9
+INFO:Trainer:Epoch 9 done.Time per batch: 634.988[s] Speed: 13.1[samples/s]
+INFO:Trainer:Epoch[10] Iteration[10/395] Loss 0.2083769
+INFO:Trainer:Epoch[10] Iteration[21/395] Loss 0.2204250
+INFO:Trainer:Epoch[10] Iteration[32/395] Loss 0.2174928
+INFO:Trainer:Epoch[10] Iteration[43/395] Loss 0.2076422
+INFO:Trainer:Epoch[10] Iteration[54/395] Loss 0.2109466
+INFO:Trainer:Epoch[10] Iteration[65/395] Loss 0.2120576
+INFO:Trainer:Epoch[10] Iteration[76/395] Loss 0.2068434
+INFO:Trainer:Epoch[10] Iteration[87/395] Loss 0.2049058
+INFO:Trainer:Epoch[10] Iteration[98/395] Loss 0.2155002
+INFO:Trainer:Epoch[10] Iteration[109/395] Loss 0.2199765
+INFO:Trainer:Epoch[10] Iteration[120/395] Loss 0.2164336
+INFO:Trainer:Epoch[10] Iteration[131/395] Loss 0.2135038
+INFO:Trainer:Epoch[10] Iteration[142/395] Loss 0.2094103
+INFO:Trainer:Epoch[10] Iteration[153/395] Loss 0.2077685
+INFO:Trainer:Epoch[10] Iteration[164/395] Loss 0.2076461
+INFO:Trainer:Epoch[10] Iteration[175/395] Loss 0.2037047
+INFO:Trainer:Epoch[10] Iteration[186/395] Loss 0.2045120
+INFO:Trainer:Epoch[10] Iteration[197/395] Loss 0.2068132
+INFO:Trainer:Epoch[10] Iteration[208/395] Loss 0.1985055
+INFO:Trainer:Epoch[10] Iteration[219/395] Loss 0.2068048
+INFO:Trainer:Epoch[10] Iteration[230/395] Loss 0.2029755
+INFO:Trainer:Epoch[10] Iteration[241/395] Loss 0.2109566
+INFO:Trainer:Epoch[10] Iteration[252/395] Loss 0.2040969
+INFO:Trainer:Epoch[10] Iteration[263/395] Loss 0.2038667
+INFO:Trainer:Epoch[10] Iteration[274/395] Loss 0.2083506
+INFO:Trainer:Epoch[10] Iteration[285/395] Loss 0.2053693
+INFO:Trainer:Epoch[10] Iteration[296/395] Loss 0.2069069
+INFO:Trainer:Epoch[10] Iteration[307/395] Loss 0.2064695
+INFO:Trainer:Epoch[10] Iteration[318/395] Loss 0.2083934
+INFO:Trainer:Epoch[10] Iteration[329/395] Loss 0.2035744
+INFO:Trainer:Epoch[10] Iteration[340/395] Loss 0.2055475
+INFO:Trainer:Epoch[10] Iteration[351/395] Loss 0.2047270
+INFO:Trainer:Epoch[10] Iteration[362/395] Loss 0.2118349
+INFO:Trainer:Epoch[10] Iteration[373/395] Loss 0.2107223
+INFO:Trainer:Epoch[10] Iteration[384/395] Loss 0.2125348
+INFO:Trainer:Epoch[10] Iteration[395/395] Loss 0.2179783
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:17
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:19
+INFO:Trainer:Validation Result - Epoch: 10 Avg Pixel Accuracy: 0.7088854 
+6.7080599377969894e-06 1.4653196474578565e-05
+INFO:ignite.engine.engine.Engine:Epoch[10] Complete. Time taken: 00:11:57
+epoch: 10
+INFO:Trainer:Epoch 10 done.Time per batch: 631.772[s] Speed: 13.1[samples/s]
+INFO:Trainer:Epoch[11] Iteration[11/395] Loss 0.2175628
+INFO:Trainer:Epoch[11] Iteration[22/395] Loss 0.2114322
+INFO:Trainer:Epoch[11] Iteration[33/395] Loss 0.2111864
+INFO:Trainer:Epoch[11] Iteration[44/395] Loss 0.2045996
+INFO:Trainer:Epoch[11] Iteration[55/395] Loss 0.2092154
+INFO:Trainer:Epoch[11] Iteration[66/395] Loss 0.2092298
+INFO:Trainer:Epoch[11] Iteration[77/395] Loss 0.2080508
+INFO:Trainer:Epoch[11] Iteration[88/395] Loss 0.2022825
+INFO:Trainer:Epoch[11] Iteration[99/395] Loss 0.2067470
+INFO:Trainer:Epoch[11] Iteration[110/395] Loss 0.2097814
+INFO:Trainer:Epoch[11] Iteration[121/395] Loss 0.2179757
+INFO:Trainer:Epoch[11] Iteration[132/395] Loss 0.2117098
+INFO:Trainer:Epoch[11] Iteration[143/395] Loss 0.2068953
+INFO:Trainer:Epoch[11] Iteration[154/395] Loss 0.2033441
+INFO:Trainer:Epoch[11] Iteration[165/395] Loss 0.2036649
+INFO:Trainer:Epoch[11] Iteration[176/395] Loss 0.1998260
+INFO:Trainer:Epoch[11] Iteration[187/395] Loss 0.1985995
+INFO:Trainer:Epoch[11] Iteration[198/395] Loss 0.2035940
+INFO:Trainer:Epoch[11] Iteration[209/395] Loss 0.2064285
+INFO:Trainer:Epoch[11] Iteration[220/395] Loss 0.2057246
+INFO:Trainer:Epoch[11] Iteration[231/395] Loss 0.2094010
+INFO:Trainer:Epoch[11] Iteration[242/395] Loss 0.2027092
+INFO:Trainer:Epoch[11] Iteration[253/395] Loss 0.1998084
+INFO:Trainer:Epoch[11] Iteration[264/395] Loss 0.2009813
+INFO:Trainer:Epoch[11] Iteration[275/395] Loss 0.2022216
+INFO:Trainer:Epoch[11] Iteration[286/395] Loss 0.2005656
+INFO:Trainer:Epoch[11] Iteration[297/395] Loss 0.1991349
+INFO:Trainer:Epoch[11] Iteration[308/395] Loss 0.1929116
+INFO:Trainer:Epoch[11] Iteration[319/395] Loss 0.1918909
+INFO:Trainer:Epoch[11] Iteration[330/395] Loss 0.1938320
+INFO:Trainer:Epoch[11] Iteration[341/395] Loss 0.1944958
+INFO:Trainer:Epoch[11] Iteration[352/395] Loss 0.1982331
+INFO:Trainer:Epoch[11] Iteration[363/395] Loss 0.1957931
+INFO:Trainer:Epoch[11] Iteration[374/395] Loss 0.1960048
+INFO:Trainer:Epoch[11] Iteration[385/395] Loss 0.1956993
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:18
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:19
+INFO:Trainer:Validation Result - Epoch: 11 Avg Pixel Accuracy: 0.7045086 
+1.713538314678036e-06 6.7080599377969894e-06
+INFO:ignite.engine.engine.Engine:Epoch[11] Complete. Time taken: 00:12:20
+epoch: 11
+INFO:Trainer:Epoch 11 done.Time per batch: 654.185[s] Speed: 12.7[samples/s]
+INFO:Trainer:Epoch[12] Iteration[1/395] Loss 0.1772468
+INFO:Trainer:Epoch[12] Iteration[12/395] Loss 0.1841719
+INFO:Trainer:Epoch[12] Iteration[23/395] Loss 0.1847701
+INFO:Trainer:Epoch[12] Iteration[34/395] Loss 0.1842405
+INFO:Trainer:Epoch[12] Iteration[45/395] Loss 0.1871702
+INFO:Trainer:Epoch[12] Iteration[56/395] Loss 0.1922927
+INFO:Trainer:Epoch[12] Iteration[67/395] Loss 0.1898361
+INFO:Trainer:Epoch[12] Iteration[78/395] Loss 0.1912367
+INFO:Trainer:Epoch[12] Iteration[89/395] Loss 0.1922225
+INFO:Trainer:Epoch[12] Iteration[100/395] Loss 0.1946155
+INFO:Trainer:Epoch[12] Iteration[111/395] Loss 0.1892890
+INFO:Trainer:Epoch[12] Iteration[122/395] Loss 0.1936715
+INFO:Trainer:Epoch[12] Iteration[133/395] Loss 0.1992390
+INFO:Trainer:Epoch[12] Iteration[144/395] Loss 0.1977006
+INFO:Trainer:Epoch[12] Iteration[155/395] Loss 0.1947156
+INFO:Trainer:Epoch[12] Iteration[166/395] Loss 0.1942976
+INFO:Trainer:Epoch[12] Iteration[177/395] Loss 0.1933558
+INFO:Trainer:Epoch[12] Iteration[188/395] Loss 0.1911578
+INFO:Trainer:Epoch[12] Iteration[199/395] Loss 0.1946428
+INFO:Trainer:Epoch[12] Iteration[210/395] Loss 0.1940910
+INFO:Trainer:Epoch[12] Iteration[221/395] Loss 0.1999276
+INFO:Trainer:Epoch[12] Iteration[232/395] Loss 0.1988329
+INFO:Trainer:Epoch[12] Iteration[243/395] Loss 0.1941600
+INFO:Trainer:Epoch[12] Iteration[254/395] Loss 0.1974248
+INFO:Trainer:Epoch[12] Iteration[265/395] Loss 0.1927638
+INFO:Trainer:Epoch[12] Iteration[276/395] Loss 0.1964858
+INFO:Trainer:Epoch[12] Iteration[287/395] Loss 0.1943103
+INFO:Trainer:Epoch[12] Iteration[298/395] Loss 0.1945726
+INFO:Trainer:Epoch[12] Iteration[309/395] Loss 0.1905166
+INFO:Trainer:Epoch[12] Iteration[320/395] Loss 0.1873111
+INFO:Trainer:Epoch[12] Iteration[331/395] Loss 0.1872317
+INFO:Trainer:Epoch[12] Iteration[342/395] Loss 0.1869625
+INFO:Trainer:Epoch[12] Iteration[353/395] Loss 0.1834271
+INFO:Trainer:Epoch[12] Iteration[364/395] Loss 0.1884233
+INFO:Trainer:Epoch[12] Iteration[375/395] Loss 0.1882303
+INFO:Trainer:Epoch[12] Iteration[386/395] Loss 0.1911923
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:17
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:19
+INFO:Trainer:Validation Result - Epoch: 12 Avg Pixel Accuracy: 0.7051369 
+1e-08 1.713538314678036e-06
+INFO:ignite.engine.engine.Engine:Epoch[12] Complete. Time taken: 00:12:14
+epoch: 12
+INFO:Trainer:Epoch 12 done.Time per batch: 648.423[s] Speed: 12.8[samples/s]
+INFO:Trainer:Epoch[13] Iteration[2/395] Loss 0.1210463
+INFO:Trainer:Epoch[13] Iteration[13/395] Loss 0.1330025
+INFO:Trainer:Epoch[13] Iteration[24/395] Loss 0.1452551
+INFO:Trainer:Epoch[13] Iteration[35/395] Loss 0.1544691
+INFO:Trainer:Epoch[13] Iteration[46/395] Loss 0.1659915
+INFO:Trainer:Epoch[13] Iteration[57/395] Loss 0.1692386
+INFO:Trainer:Epoch[13] Iteration[68/395] Loss 0.1695876
+INFO:Trainer:Epoch[13] Iteration[79/395] Loss 0.1742495
+INFO:Trainer:Epoch[13] Iteration[90/395] Loss 0.1753805
+INFO:Trainer:Epoch[13] Iteration[101/395] Loss 0.1801974
+INFO:Trainer:Epoch[13] Iteration[112/395] Loss 0.1789715
+INFO:Trainer:Epoch[13] Iteration[123/395] Loss 0.1896271
+INFO:Trainer:Epoch[13] Iteration[134/395] Loss 0.1876040
+INFO:Trainer:Epoch[13] Iteration[145/395] Loss 0.1915374
+INFO:Trainer:Epoch[13] Iteration[156/395] Loss 0.1927765
+INFO:Trainer:Epoch[13] Iteration[167/395] Loss 0.1962935
+INFO:Trainer:Epoch[13] Iteration[178/395] Loss 0.1950274
+INFO:Trainer:Epoch[13] Iteration[189/395] Loss 0.1992377
+INFO:Trainer:Epoch[13] Iteration[200/395] Loss 0.1985475
+INFO:Trainer:Epoch[13] Iteration[211/395] Loss 0.2008889
+INFO:Trainer:Epoch[13] Iteration[222/395] Loss 0.2057929
+INFO:Trainer:Epoch[13] Iteration[233/395] Loss 0.2032900
+INFO:Trainer:Epoch[13] Iteration[244/395] Loss 0.2050063
+INFO:Trainer:Epoch[13] Iteration[255/395] Loss 0.2020958
+INFO:Trainer:Epoch[13] Iteration[266/395] Loss 0.2003604
+INFO:Trainer:Epoch[13] Iteration[277/395] Loss 0.1941736
+INFO:Trainer:Epoch[13] Iteration[288/395] Loss 0.1913045
+INFO:Trainer:Epoch[13] Iteration[299/395] Loss 0.1848490
+INFO:Trainer:Epoch[13] Iteration[310/395] Loss 0.1915767
+INFO:Trainer:Epoch[13] Iteration[321/395] Loss 0.1934893
+INFO:Trainer:Epoch[13] Iteration[332/395] Loss 0.1962126
+INFO:Trainer:Epoch[13] Iteration[343/395] Loss 0.1963199
+INFO:Trainer:Epoch[13] Iteration[354/395] Loss 0.1906558
+INFO:Trainer:Epoch[13] Iteration[365/395] Loss 0.1829923
+INFO:Trainer:Epoch[13] Iteration[376/395] Loss 0.1826804
+INFO:Trainer:Epoch[13] Iteration[387/395] Loss 0.1840877
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:17
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:19
+INFO:Trainer:Validation Result - Epoch: 13 Avg Pixel Accuracy: 0.7054096 
+1.7135383146780298e-06 1e-08
+INFO:ignite.engine.engine.Engine:Epoch[13] Complete. Time taken: 00:12:43
+epoch: 13
+INFO:Trainer:Epoch 13 done.Time per batch: 676.980[s] Speed: 12.3[samples/s]
+INFO:Trainer:Epoch[14] Iteration[3/395] Loss 0.2035817
+INFO:Trainer:Epoch[14] Iteration[14/395] Loss 0.2021220
+INFO:Trainer:Epoch[14] Iteration[25/395] Loss 0.2032084
+INFO:Trainer:Epoch[14] Iteration[36/395] Loss 0.1971038
+INFO:Trainer:Epoch[14] Iteration[47/395] Loss 0.1920967
+INFO:Trainer:Epoch[14] Iteration[58/395] Loss 0.1872882
+INFO:Trainer:Epoch[14] Iteration[69/395] Loss 0.1871768
+INFO:Trainer:Epoch[14] Iteration[80/395] Loss 0.1876375
+INFO:Trainer:Epoch[14] Iteration[91/395] Loss 0.1876745
+INFO:Trainer:Epoch[14] Iteration[102/395] Loss 0.1929841
+INFO:Trainer:Epoch[14] Iteration[113/395] Loss 0.1876182
+INFO:Trainer:Epoch[14] Iteration[124/395] Loss 0.1858087
+INFO:Trainer:Epoch[14] Iteration[135/395] Loss 0.1879737
+INFO:Trainer:Epoch[14] Iteration[146/395] Loss 0.1863807
+INFO:Trainer:Epoch[14] Iteration[157/395] Loss 0.1908166
+INFO:Trainer:Epoch[14] Iteration[168/395] Loss 0.1993198
+INFO:Trainer:Epoch[14] Iteration[179/395] Loss 0.1981601
+INFO:Trainer:Epoch[14] Iteration[190/395] Loss 0.1972890
+INFO:Trainer:Epoch[14] Iteration[201/395] Loss 0.1957006
+INFO:Trainer:Epoch[14] Iteration[212/395] Loss 0.1974631
+INFO:Trainer:Epoch[14] Iteration[223/395] Loss 0.1990032
+INFO:Trainer:Epoch[14] Iteration[234/395] Loss 0.1972862
+INFO:Trainer:Epoch[14] Iteration[245/395] Loss 0.1904892
+INFO:Trainer:Epoch[14] Iteration[256/395] Loss 0.1917458
+INFO:Trainer:Epoch[14] Iteration[267/395] Loss 0.1956927
+INFO:Trainer:Epoch[14] Iteration[278/395] Loss 0.1905356
+INFO:Trainer:Epoch[14] Iteration[289/395] Loss 0.1907619
+INFO:Trainer:Epoch[14] Iteration[300/395] Loss 0.1929067
+INFO:Trainer:Epoch[14] Iteration[311/395] Loss 0.1895356
+INFO:Trainer:Epoch[14] Iteration[322/395] Loss 0.1888112
+INFO:Trainer:Epoch[14] Iteration[333/395] Loss 0.1882375
+INFO:Trainer:Epoch[14] Iteration[344/395] Loss 0.1868711
+INFO:Trainer:Epoch[14] Iteration[355/395] Loss 0.1923483
+INFO:Trainer:Epoch[14] Iteration[366/395] Loss 0.1959842
+INFO:Trainer:Epoch[14] Iteration[377/395] Loss 0.1958130
+INFO:Trainer:Epoch[14] Iteration[388/395] Loss 0.1898906
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:17
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:18
+INFO:Trainer:Validation Result - Epoch: 14 Avg Pixel Accuracy: 0.6984439 
+6.708059937796982e-06 1.7135383146780298e-06
+INFO:ignite.engine.engine.Engine:Epoch[14] Complete. Time taken: 00:12:23
+epoch: 14
+INFO:Trainer:Epoch 14 done.Time per batch: 658.643[s] Speed: 12.6[samples/s]
+INFO:Trainer:Epoch[15] Iteration[4/395] Loss 0.0889976
+INFO:Trainer:Epoch[15] Iteration[15/395] Loss 0.1148377
+INFO:Trainer:Epoch[15] Iteration[26/395] Loss 0.1289934
+INFO:Trainer:Epoch[15] Iteration[37/395] Loss 0.1344908
+INFO:Trainer:Epoch[15] Iteration[48/395] Loss 0.1494429
+INFO:Trainer:Epoch[15] Iteration[59/395] Loss 0.1530235
+INFO:Trainer:Epoch[15] Iteration[70/395] Loss 0.1642722
+INFO:Trainer:Epoch[15] Iteration[81/395] Loss 0.1720206
+INFO:Trainer:Epoch[15] Iteration[92/395] Loss 0.1792629
+INFO:Trainer:Epoch[15] Iteration[103/395] Loss 0.1882048
+INFO:Trainer:Epoch[15] Iteration[114/395] Loss 0.1915177
+INFO:Trainer:Epoch[15] Iteration[125/395] Loss 0.1875108
+INFO:Trainer:Epoch[15] Iteration[136/395] Loss 0.1934085
+INFO:Trainer:Epoch[15] Iteration[147/395] Loss 0.1970713
+INFO:Trainer:Epoch[15] Iteration[158/395] Loss 0.1923112
+INFO:Trainer:Epoch[15] Iteration[169/395] Loss 0.1962185
+INFO:Trainer:Epoch[15] Iteration[180/395] Loss 0.1996150
+INFO:Trainer:Epoch[15] Iteration[191/395] Loss 0.1987606
+INFO:Trainer:Epoch[15] Iteration[202/395] Loss 0.1998053
+INFO:Trainer:Epoch[15] Iteration[213/395] Loss 0.1955705
+INFO:Trainer:Epoch[15] Iteration[224/395] Loss 0.1950006
+INFO:Trainer:Epoch[15] Iteration[235/395] Loss 0.1922990
+INFO:Trainer:Epoch[15] Iteration[246/395] Loss 0.1850051
+INFO:Trainer:Epoch[15] Iteration[257/395] Loss 0.1898328
+INFO:Trainer:Epoch[15] Iteration[268/395] Loss 0.1947562
+INFO:Trainer:Epoch[15] Iteration[279/395] Loss 0.1964913
+INFO:Trainer:Epoch[15] Iteration[290/395] Loss 0.1902741
+INFO:Trainer:Epoch[15] Iteration[301/395] Loss 0.1914886
+INFO:Trainer:Epoch[15] Iteration[312/395] Loss 0.1898496
+INFO:Trainer:Epoch[15] Iteration[323/395] Loss 0.1900418
+INFO:Trainer:Epoch[15] Iteration[334/395] Loss 0.1865872
+INFO:Trainer:Epoch[15] Iteration[345/395] Loss 0.1948962
+INFO:Trainer:Epoch[15] Iteration[356/395] Loss 0.1947661
+INFO:Trainer:Epoch[15] Iteration[367/395] Loss 0.1915708
+INFO:Trainer:Epoch[15] Iteration[378/395] Loss 0.1913694
+INFO:Trainer:Epoch[15] Iteration[389/395] Loss 0.1849882
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:17
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:18
+INFO:Trainer:Validation Result - Epoch: 15 Avg Pixel Accuracy: 0.7012622 
+1.4653196474578538e-05 6.708059937796982e-06
+INFO:ignite.engine.engine.Engine:Epoch[15] Complete. Time taken: 00:12:21
+epoch: 15
+INFO:Trainer:Epoch 15 done.Time per batch: 654.760[s] Speed: 12.7[samples/s]
+INFO:Trainer:Epoch[16] Iteration[5/395] Loss 0.1871081
+INFO:Trainer:Epoch[16] Iteration[16/395] Loss 0.1868090
+INFO:Trainer:Epoch[16] Iteration[27/395] Loss 0.1888672
+INFO:Trainer:Epoch[16] Iteration[38/395] Loss 0.1917520
+INFO:Trainer:Epoch[16] Iteration[49/395] Loss 0.1913965
+INFO:Trainer:Epoch[16] Iteration[60/395] Loss 0.1945864
+INFO:Trainer:Epoch[16] Iteration[71/395] Loss 0.1992004
+INFO:Trainer:Epoch[16] Iteration[82/395] Loss 0.1917726
+INFO:Trainer:Epoch[16] Iteration[93/395] Loss 0.1897686
+INFO:Trainer:Epoch[16] Iteration[104/395] Loss 0.1917597
+INFO:Trainer:Epoch[16] Iteration[115/395] Loss 0.1955353
+INFO:Trainer:Epoch[16] Iteration[126/395] Loss 0.1904113
+INFO:Trainer:Epoch[16] Iteration[137/395] Loss 0.1902358
+INFO:Trainer:Epoch[16] Iteration[148/395] Loss 0.1868868
+INFO:Trainer:Epoch[16] Iteration[159/395] Loss 0.1877514
+INFO:Trainer:Epoch[16] Iteration[170/395] Loss 0.1887177
+INFO:Trainer:Epoch[16] Iteration[181/395] Loss 0.1890223
+INFO:Trainer:Epoch[16] Iteration[192/395] Loss 0.1889905
+INFO:Trainer:Epoch[16] Iteration[203/395] Loss 0.1879382
+INFO:Trainer:Epoch[16] Iteration[214/395] Loss 0.1865509
+INFO:Trainer:Epoch[16] Iteration[225/395] Loss 0.1893466
+INFO:Trainer:Epoch[16] Iteration[236/395] Loss 0.1890421
+INFO:Trainer:Epoch[16] Iteration[247/395] Loss 0.1896133
+INFO:Trainer:Epoch[16] Iteration[258/395] Loss 0.1926600
+INFO:Trainer:Epoch[16] Iteration[269/395] Loss 0.1877936
+INFO:Trainer:Epoch[16] Iteration[280/395] Loss 0.1793081
+INFO:Trainer:Epoch[16] Iteration[291/395] Loss 0.1810893
+INFO:Trainer:Epoch[16] Iteration[302/395] Loss 0.1807604
+INFO:Trainer:Epoch[16] Iteration[313/395] Loss 0.1810265
+INFO:Trainer:Epoch[16] Iteration[324/395] Loss 0.1948810
+INFO:Trainer:Epoch[16] Iteration[335/395] Loss 0.1918221
+INFO:Trainer:Epoch[16] Iteration[346/395] Loss 0.1896441
+INFO:Trainer:Epoch[16] Iteration[357/395] Loss 0.1930932
+INFO:Trainer:Epoch[16] Iteration[368/395] Loss 0.1916100
+INFO:Trainer:Epoch[16] Iteration[379/395] Loss 0.1966077
+INFO:Trainer:Epoch[16] Iteration[390/395] Loss 0.1943809
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:20
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:21
+INFO:Trainer:Validation Result - Epoch: 16 Avg Pixel Accuracy: 0.7015889 
+2.500749999999998e-05 1.4653196474578538e-05
+INFO:ignite.engine.engine.Engine:Epoch[16] Complete. Time taken: 00:12:46
+epoch: 16
+INFO:Trainer:Epoch 16 done.Time per batch: 678.323[s] Speed: 12.2[samples/s]
+INFO:Trainer:Epoch[17] Iteration[6/395] Loss 0.1569768
+INFO:Trainer:Epoch[17] Iteration[17/395] Loss 0.1646784
+INFO:Trainer:Epoch[17] Iteration[28/395] Loss 0.1688504
+INFO:Trainer:Epoch[17] Iteration[39/395] Loss 0.1720899
+INFO:Trainer:Epoch[17] Iteration[50/395] Loss 0.1820608
+INFO:Trainer:Epoch[17] Iteration[61/395] Loss 0.1879186
+INFO:Trainer:Epoch[17] Iteration[72/395] Loss 0.1894360
+INFO:Trainer:Epoch[17] Iteration[83/395] Loss 0.1842349
+INFO:Trainer:Epoch[17] Iteration[94/395] Loss 0.1890197
+INFO:Trainer:Epoch[17] Iteration[105/395] Loss 0.1986136
+INFO:Trainer:Epoch[17] Iteration[116/395] Loss 0.1892422
+INFO:Trainer:Epoch[17] Iteration[127/395] Loss 0.1880526
+INFO:Trainer:Epoch[17] Iteration[138/395] Loss 0.1897650
+INFO:Trainer:Epoch[17] Iteration[149/395] Loss 0.1891731
+INFO:Trainer:Epoch[17] Iteration[160/395] Loss 0.1958161
+INFO:Trainer:Epoch[17] Iteration[171/395] Loss 0.1997338
+INFO:Trainer:Epoch[17] Iteration[182/395] Loss 0.1969774
+INFO:Trainer:Epoch[17] Iteration[193/395] Loss 0.1919975
+INFO:Trainer:Epoch[17] Iteration[204/395] Loss 0.1917760
+INFO:Trainer:Epoch[17] Iteration[215/395] Loss 0.1889574
+INFO:Trainer:Epoch[17] Iteration[226/395] Loss 0.1884883
+INFO:Trainer:Epoch[17] Iteration[237/395] Loss 0.1974088
+INFO:Trainer:Epoch[17] Iteration[248/395] Loss 0.1942102
+INFO:Trainer:Epoch[17] Iteration[259/395] Loss 0.1963636
+INFO:Trainer:Epoch[17] Iteration[270/395] Loss 0.1974439
+INFO:Trainer:Epoch[17] Iteration[281/395] Loss 0.2013121
+INFO:Trainer:Epoch[17] Iteration[292/395] Loss 0.2067462
+INFO:Trainer:Epoch[17] Iteration[303/395] Loss 0.1950738
+INFO:Trainer:Epoch[17] Iteration[314/395] Loss 0.1940876
+INFO:Trainer:Epoch[17] Iteration[325/395] Loss 0.2055441
+INFO:Trainer:Epoch[17] Iteration[336/395] Loss 0.1947832
+INFO:Trainer:Epoch[17] Iteration[347/395] Loss 0.1988589
+INFO:Trainer:Epoch[17] Iteration[358/395] Loss 0.1948502
+INFO:Trainer:Epoch[17] Iteration[369/395] Loss 0.1935106
+INFO:Trainer:Epoch[17] Iteration[380/395] Loss 0.1982673
+INFO:Trainer:Epoch[17] Iteration[391/395] Loss 0.2000793
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:18
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:19
+INFO:Trainer:Validation Result - Epoch: 17 Avg Pixel Accuracy: 0.6911366 
+3.7065341840099486e-05 2.500749999999998e-05
+INFO:ignite.engine.engine.Engine:Epoch[17] Complete. Time taken: 00:12:10
+epoch: 17
+INFO:Trainer:Epoch 17 done.Time per batch: 642.724[s] Speed: 12.9[samples/s]
+INFO:Trainer:Epoch[18] Iteration[7/395] Loss 0.3160781
+INFO:Trainer:Epoch[18] Iteration[18/395] Loss 0.2934707
+INFO:Trainer:Epoch[18] Iteration[29/395] Loss 0.2780943
+INFO:Trainer:Epoch[18] Iteration[40/395] Loss 0.2603509
+INFO:Trainer:Epoch[18] Iteration[51/395] Loss 0.2432511
+INFO:Trainer:Epoch[18] Iteration[62/395] Loss 0.2380384
+INFO:Trainer:Epoch[18] Iteration[73/395] Loss 0.2307551
+INFO:Trainer:Epoch[18] Iteration[84/395] Loss 0.2253267
+INFO:Trainer:Epoch[18] Iteration[95/395] Loss 0.2155881
+INFO:Trainer:Epoch[18] Iteration[106/395] Loss 0.2122451
+INFO:Trainer:Epoch[18] Iteration[117/395] Loss 0.2105409
+INFO:Trainer:Epoch[18] Iteration[128/395] Loss 0.2075382
+INFO:Trainer:Epoch[18] Iteration[139/395] Loss 0.2040149
+INFO:Trainer:Epoch[18] Iteration[150/395] Loss 0.2053385
+INFO:Trainer:Epoch[18] Iteration[161/395] Loss 0.2066748
+INFO:Trainer:Epoch[18] Iteration[172/395] Loss 0.2067458
+INFO:Trainer:Epoch[18] Iteration[183/395] Loss 0.2108442
+INFO:Trainer:Epoch[18] Iteration[194/395] Loss 0.2090651
+INFO:Trainer:Epoch[18] Iteration[205/395] Loss 0.2108295
+INFO:Trainer:Epoch[18] Iteration[216/395] Loss 0.2045273
+INFO:Trainer:Epoch[18] Iteration[227/395] Loss 0.2020957
+INFO:Trainer:Epoch[18] Iteration[238/395] Loss 0.2097709
+INFO:Trainer:Epoch[18] Iteration[249/395] Loss 0.2105376
+INFO:Trainer:Epoch[18] Iteration[260/395] Loss 0.2069623
+INFO:Trainer:Epoch[18] Iteration[271/395] Loss 0.2098056
+INFO:Trainer:Epoch[18] Iteration[282/395] Loss 0.2109437
+INFO:Trainer:Epoch[18] Iteration[293/395] Loss 0.2088206
+INFO:Trainer:Epoch[18] Iteration[304/395] Loss 0.2073691
+INFO:Trainer:Epoch[18] Iteration[315/395] Loss 0.2002739
+INFO:Trainer:Epoch[18] Iteration[326/395] Loss 0.2042949
+INFO:Trainer:Epoch[18] Iteration[337/395] Loss 0.2094435
+INFO:Trainer:Epoch[18] Iteration[348/395] Loss 0.2117613
+INFO:Trainer:Epoch[18] Iteration[359/395] Loss 0.2132371
+INFO:Trainer:Epoch[18] Iteration[370/395] Loss 0.2078332
+INFO:Trainer:Epoch[18] Iteration[381/395] Loss 0.2057997
+INFO:Trainer:Epoch[18] Iteration[392/395] Loss 0.2082519
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:15
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:16
+INFO:Trainer:Validation Result - Epoch: 18 Avg Pixel Accuracy: 0.6946755 
+5.000499999999999e-05 3.7065341840099486e-05
+INFO:ignite.engine.engine.Engine:Epoch[18] Complete. Time taken: 00:12:29
+epoch: 18
+INFO:Trainer:Epoch 18 done.Time per batch: 665.675[s] Speed: 12.5[samples/s]
+INFO:Trainer:Epoch[19] Iteration[8/395] Loss 0.1471374
+INFO:Trainer:Epoch[19] Iteration[19/395] Loss 0.1606893
+INFO:Trainer:Epoch[19] Iteration[30/395] Loss 0.1713449
+INFO:Trainer:Epoch[19] Iteration[41/395] Loss 0.1760401
+INFO:Trainer:Epoch[19] Iteration[52/395] Loss 0.1775176
+INFO:Trainer:Epoch[19] Iteration[63/395] Loss 0.1806821
+INFO:Trainer:Epoch[19] Iteration[74/395] Loss 0.1879064
+INFO:Trainer:Epoch[19] Iteration[85/395] Loss 0.1911092
+INFO:Trainer:Epoch[19] Iteration[96/395] Loss 0.1998705
+INFO:Trainer:Epoch[19] Iteration[107/395] Loss 0.2010051
+INFO:Trainer:Epoch[19] Iteration[118/395] Loss 0.2004467
+INFO:Trainer:Epoch[19] Iteration[129/395] Loss 0.1995343
+INFO:Trainer:Epoch[19] Iteration[140/395] Loss 0.2066799
+INFO:Trainer:Epoch[19] Iteration[151/395] Loss 0.2077122
+INFO:Trainer:Epoch[19] Iteration[162/395] Loss 0.2115547
+INFO:Trainer:Epoch[19] Iteration[173/395] Loss 0.2164561
+INFO:Trainer:Epoch[19] Iteration[184/395] Loss 0.2099862
+INFO:Trainer:Epoch[19] Iteration[195/395] Loss 0.2083346
+INFO:Trainer:Epoch[19] Iteration[206/395] Loss 0.2137073
+INFO:Trainer:Epoch[19] Iteration[217/395] Loss 0.2077464
+INFO:Trainer:Epoch[19] Iteration[228/395] Loss 0.2114343
+INFO:Trainer:Epoch[19] Iteration[239/395] Loss 0.2168573
+INFO:Trainer:Epoch[19] Iteration[250/395] Loss 0.2135476
+INFO:Trainer:Epoch[19] Iteration[261/395] Loss 0.2125506
+INFO:Trainer:Epoch[19] Iteration[272/395] Loss 0.2131637
+INFO:Trainer:Epoch[19] Iteration[283/395] Loss 0.2079424
+INFO:Trainer:Epoch[19] Iteration[294/395] Loss 0.2040274
+INFO:Trainer:Epoch[19] Iteration[305/395] Loss 0.2064019
+INFO:Trainer:Epoch[19] Iteration[316/395] Loss 0.2115079
+INFO:Trainer:Epoch[19] Iteration[327/395] Loss 0.2137558
+INFO:Trainer:Epoch[19] Iteration[338/395] Loss 0.2147555
+INFO:Trainer:Epoch[19] Iteration[349/395] Loss 0.2094002
+INFO:Trainer:Epoch[19] Iteration[360/395] Loss 0.2093178
+INFO:Trainer:Epoch[19] Iteration[371/395] Loss 0.2158786
+INFO:Trainer:Epoch[19] Iteration[382/395] Loss 0.2127749
+INFO:Trainer:Epoch[19] Iteration[393/395] Loss 0.2076657
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:17
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:18
+INFO:Trainer:Validation Result - Epoch: 19 Avg Pixel Accuracy: 0.6830981 
+6.29446581599005e-05 5.000499999999999e-05
+INFO:ignite.engine.engine.Engine:Epoch[19] Complete. Time taken: 00:12:24
+epoch: 19
+INFO:Trainer:Epoch 19 done.Time per batch: 658.763[s] Speed: 12.6[samples/s]
+INFO:Trainer:Epoch[20] Iteration[9/395] Loss 0.1702321
+INFO:Trainer:Epoch[20] Iteration[20/395] Loss 0.1782327
+INFO:Trainer:Epoch[20] Iteration[31/395] Loss 0.1868352
+INFO:Trainer:Epoch[20] Iteration[42/395] Loss 0.1892040
+INFO:Trainer:Epoch[20] Iteration[53/395] Loss 0.1835128
+INFO:Trainer:Epoch[20] Iteration[64/395] Loss 0.1925033
+INFO:Trainer:Epoch[20] Iteration[75/395] Loss 0.1892825
+INFO:Trainer:Epoch[20] Iteration[86/395] Loss 0.1884584
+INFO:Trainer:Epoch[20] Iteration[97/395] Loss 0.1971442
+INFO:Trainer:Epoch[20] Iteration[108/395] Loss 0.1990646
+INFO:Trainer:Epoch[20] Iteration[119/395] Loss 0.2029197
+INFO:Trainer:Epoch[20] Iteration[130/395] Loss 0.2047602
+INFO:Trainer:Epoch[20] Iteration[141/395] Loss 0.2081393
+INFO:Trainer:Epoch[20] Iteration[152/395] Loss 0.2106053
+INFO:Trainer:Epoch[20] Iteration[163/395] Loss 0.2165024
+INFO:Trainer:Epoch[20] Iteration[174/395] Loss 0.2177589
+INFO:Trainer:Epoch[20] Iteration[185/395] Loss 0.2253735
+INFO:Trainer:Epoch[20] Iteration[196/395] Loss 0.2285446
+INFO:Trainer:Epoch[20] Iteration[207/395] Loss 0.2256971
+INFO:Trainer:Epoch[20] Iteration[218/395] Loss 0.2293826
+INFO:Trainer:Epoch[20] Iteration[229/395] Loss 0.2264624
+INFO:Trainer:Epoch[20] Iteration[240/395] Loss 0.2236453
+INFO:Trainer:Epoch[20] Iteration[251/395] Loss 0.2154077
+INFO:Trainer:Epoch[20] Iteration[262/395] Loss 0.2156312
+INFO:Trainer:Epoch[20] Iteration[273/395] Loss 0.2183794
+INFO:Trainer:Epoch[20] Iteration[284/395] Loss 0.2172172
+INFO:Trainer:Epoch[20] Iteration[295/395] Loss 0.2193719
+INFO:Trainer:Epoch[20] Iteration[306/395] Loss 0.2291941
+INFO:Trainer:Epoch[20] Iteration[317/395] Loss 0.2371899
+INFO:Trainer:Epoch[20] Iteration[328/395] Loss 0.2324801
+INFO:Trainer:Epoch[20] Iteration[339/395] Loss 0.2262761
+INFO:Trainer:Epoch[20] Iteration[350/395] Loss 0.2215923
+INFO:Trainer:Epoch[20] Iteration[361/395] Loss 0.2224974
+INFO:Trainer:Epoch[20] Iteration[372/395] Loss 0.2288596
+INFO:Trainer:Epoch[20] Iteration[383/395] Loss 0.2244892
+INFO:Trainer:Epoch[20] Iteration[394/395] Loss 0.2196084
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:22
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:23
+INFO:Trainer:Validation Result - Epoch: 20 Avg Pixel Accuracy: 0.6869380 
+7.500249999999999e-05 6.29446581599005e-05
+INFO:ignite.engine.engine.Engine:Epoch[20] Complete. Time taken: 00:12:02
+epoch: 20
+INFO:Trainer:Epoch 20 done.Time per batch: 632.014[s] Speed: 13.1[samples/s]
+INFO:Trainer:Epoch[21] Iteration[10/395] Loss 0.2125125
+INFO:Trainer:Epoch[21] Iteration[21/395] Loss 0.2112674
+INFO:Trainer:Epoch[21] Iteration[32/395] Loss 0.2096678
+INFO:Trainer:Epoch[21] Iteration[43/395] Loss 0.2230583
+INFO:Trainer:Epoch[21] Iteration[54/395] Loss 0.2182453
+INFO:Trainer:Epoch[21] Iteration[65/395] Loss 0.2208114
+INFO:Trainer:Epoch[21] Iteration[76/395] Loss 0.2171846
+INFO:Trainer:Epoch[21] Iteration[87/395] Loss 0.2169847
+INFO:Trainer:Epoch[21] Iteration[98/395] Loss 0.2174775
+INFO:Trainer:Epoch[21] Iteration[109/395] Loss 0.2160866
+INFO:Trainer:Epoch[21] Iteration[120/395] Loss 0.2190057
+INFO:Trainer:Epoch[21] Iteration[131/395] Loss 0.2161577
+INFO:Trainer:Epoch[21] Iteration[142/395] Loss 0.2123317
+INFO:Trainer:Epoch[21] Iteration[153/395] Loss 0.2211222
+INFO:Trainer:Epoch[21] Iteration[164/395] Loss 0.2218857
+INFO:Trainer:Epoch[21] Iteration[175/395] Loss 0.2192617
+INFO:Trainer:Epoch[21] Iteration[186/395] Loss 0.2212394
+INFO:Trainer:Epoch[21] Iteration[197/395] Loss 0.2182851
+INFO:Trainer:Epoch[21] Iteration[208/395] Loss 0.2212069
+INFO:Trainer:Epoch[21] Iteration[219/395] Loss 0.2199747
+INFO:Trainer:Epoch[21] Iteration[230/395] Loss 0.2222983
+INFO:Trainer:Epoch[21] Iteration[241/395] Loss 0.2198580
+INFO:Trainer:Epoch[21] Iteration[252/395] Loss 0.2130335
+INFO:Trainer:Epoch[21] Iteration[263/395] Loss 0.2130235
+INFO:Trainer:Epoch[21] Iteration[274/395] Loss 0.2100912
+INFO:Trainer:Epoch[21] Iteration[285/395] Loss 0.2167254
+INFO:Trainer:Epoch[21] Iteration[296/395] Loss 0.2152923
+INFO:Trainer:Epoch[21] Iteration[307/395] Loss 0.2163614
+INFO:Trainer:Epoch[21] Iteration[318/395] Loss 0.2124055
+INFO:Trainer:Epoch[21] Iteration[329/395] Loss 0.2120909
+INFO:Trainer:Epoch[21] Iteration[340/395] Loss 0.2122253
+INFO:Trainer:Epoch[21] Iteration[351/395] Loss 0.2163784
+INFO:Trainer:Epoch[21] Iteration[362/395] Loss 0.2245293
+INFO:Trainer:Epoch[21] Iteration[373/395] Loss 0.2301794
+INFO:Trainer:Epoch[21] Iteration[384/395] Loss 0.2226381
+INFO:Trainer:Epoch[21] Iteration[395/395] Loss 0.2222735
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:18
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:19
+INFO:Trainer:Validation Result - Epoch: 21 Avg Pixel Accuracy: 0.6507225 
+8.535680352542143e-05 7.500249999999999e-05
+INFO:ignite.engine.engine.Engine:Epoch[21] Complete. Time taken: 00:12:26
+epoch: 21
+INFO:Trainer:Epoch 21 done.Time per batch: 659.276[s] Speed: 12.6[samples/s]
+INFO:Trainer:Epoch[22] Iteration[11/395] Loss 0.3531467
+INFO:Trainer:Epoch[22] Iteration[22/395] Loss 0.3273599
+INFO:Trainer:Epoch[22] Iteration[33/395] Loss 0.3140187
+INFO:Trainer:Epoch[22] Iteration[44/395] Loss 0.2975299
+INFO:Trainer:Epoch[22] Iteration[55/395] Loss 0.2822138
+INFO:Trainer:Epoch[22] Iteration[66/395] Loss 0.2698234
+INFO:Trainer:Epoch[22] Iteration[77/395] Loss 0.2518744
+INFO:Trainer:Epoch[22] Iteration[88/395] Loss 0.2526972
+INFO:Trainer:Epoch[22] Iteration[99/395] Loss 0.2507995
+INFO:Trainer:Epoch[22] Iteration[110/395] Loss 0.2552740
+INFO:Trainer:Epoch[22] Iteration[121/395] Loss 0.2601308
+INFO:Trainer:Epoch[22] Iteration[132/395] Loss 0.2487827
+INFO:Trainer:Epoch[22] Iteration[143/395] Loss 0.2475741
+INFO:Trainer:Epoch[22] Iteration[154/395] Loss 0.2455930
+INFO:Trainer:Epoch[22] Iteration[165/395] Loss 0.2474694
+INFO:Trainer:Epoch[22] Iteration[176/395] Loss 0.2416168
+INFO:Trainer:Epoch[22] Iteration[187/395] Loss 0.2426406
+INFO:Trainer:Epoch[22] Iteration[198/395] Loss 0.2362303
+INFO:Trainer:Epoch[22] Iteration[209/395] Loss 0.2347055
+INFO:Trainer:Epoch[22] Iteration[220/395] Loss 0.2266232
+INFO:Trainer:Epoch[22] Iteration[231/395] Loss 0.2328426
+INFO:Trainer:Epoch[22] Iteration[242/395] Loss 0.2284627
+INFO:Trainer:Epoch[22] Iteration[253/395] Loss 0.2315433
+INFO:Trainer:Epoch[22] Iteration[264/395] Loss 0.2278484
+INFO:Trainer:Epoch[22] Iteration[275/395] Loss 0.2301577
+INFO:Trainer:Epoch[22] Iteration[286/395] Loss 0.2331942
+INFO:Trainer:Epoch[22] Iteration[297/395] Loss 0.2295500
+INFO:Trainer:Epoch[22] Iteration[308/395] Loss 0.2302098
+INFO:Trainer:Epoch[22] Iteration[319/395] Loss 0.2260779
+INFO:Trainer:Epoch[22] Iteration[330/395] Loss 0.2202613
+INFO:Trainer:Epoch[22] Iteration[341/395] Loss 0.2204738
+INFO:Trainer:Epoch[22] Iteration[352/395] Loss 0.2237435
+INFO:Trainer:Epoch[22] Iteration[363/395] Loss 0.2175707
+INFO:Trainer:Epoch[22] Iteration[374/395] Loss 0.2200241
+INFO:Trainer:Epoch[22] Iteration[385/395] Loss 0.2216047
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:25
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:26
+INFO:Trainer:Validation Result - Epoch: 22 Avg Pixel Accuracy: 0.7266806 
+9.330194006220299e-05 8.535680352542143e-05
+INFO:ignite.engine.engine.Engine:Epoch[22] Complete. Time taken: 00:12:42
+epoch: 22
+INFO:Trainer:Epoch 22 done.Time per batch: 668.520[s] Speed: 12.4[samples/s]
+INFO:Trainer:Epoch[23] Iteration[1/395] Loss 0.1612221
+INFO:Trainer:Epoch[23] Iteration[12/395] Loss 0.1787500
+INFO:Trainer:Epoch[23] Iteration[23/395] Loss 0.1846771
+INFO:Trainer:Epoch[23] Iteration[34/395] Loss 0.1927030
+INFO:Trainer:Epoch[23] Iteration[45/395] Loss 0.1946853
+INFO:Trainer:Epoch[23] Iteration[56/395] Loss 0.1942843
+INFO:Trainer:Epoch[23] Iteration[67/395] Loss 0.2057839
+INFO:Trainer:Epoch[23] Iteration[78/395] Loss 0.2118715
+INFO:Trainer:Epoch[23] Iteration[89/395] Loss 0.2136838
+INFO:Trainer:Epoch[23] Iteration[100/395] Loss 0.2259682
+INFO:Trainer:Epoch[23] Iteration[111/395] Loss 0.2260764
+INFO:Trainer:Epoch[23] Iteration[122/395] Loss 0.2300975
+INFO:Trainer:Epoch[23] Iteration[133/395] Loss 0.2349415
+INFO:Trainer:Epoch[23] Iteration[144/395] Loss 0.2313038
+INFO:Trainer:Epoch[23] Iteration[155/395] Loss 0.2363822
+INFO:Trainer:Epoch[23] Iteration[166/395] Loss 0.2373240
+INFO:Trainer:Epoch[23] Iteration[177/395] Loss 0.2316211
+INFO:Trainer:Epoch[23] Iteration[188/395] Loss 0.2296422
+INFO:Trainer:Epoch[23] Iteration[199/395] Loss 0.2304383
+INFO:Trainer:Epoch[23] Iteration[210/395] Loss 0.2326773
+INFO:Trainer:Epoch[23] Iteration[221/395] Loss 0.2293068
+INFO:Trainer:Epoch[23] Iteration[232/395] Loss 0.2271574
+INFO:Trainer:Epoch[23] Iteration[243/395] Loss 0.2218852
+INFO:Trainer:Epoch[23] Iteration[254/395] Loss 0.2205745
+INFO:Trainer:Epoch[23] Iteration[265/395] Loss 0.2239210
+INFO:Trainer:Epoch[23] Iteration[276/395] Loss 0.2176958
+INFO:Trainer:Epoch[23] Iteration[287/395] Loss 0.2196361
+INFO:Trainer:Epoch[23] Iteration[298/395] Loss 0.2119056
+INFO:Trainer:Epoch[23] Iteration[309/395] Loss 0.2136284
+INFO:Trainer:Epoch[23] Iteration[320/395] Loss 0.2183365
+INFO:Trainer:Epoch[23] Iteration[331/395] Loss 0.2200101
+INFO:Trainer:Epoch[23] Iteration[342/395] Loss 0.2172531
+INFO:Trainer:Epoch[23] Iteration[353/395] Loss 0.2152342
+INFO:Trainer:Epoch[23] Iteration[364/395] Loss 0.2157806
+INFO:Trainer:Epoch[23] Iteration[375/395] Loss 0.2205045
+INFO:Trainer:Epoch[23] Iteration[386/395] Loss 0.2137487
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:18
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:20
+INFO:Trainer:Validation Result - Epoch: 23 Avg Pixel Accuracy: 0.6546131 
+9.829646168532195e-05 9.330194006220299e-05
+INFO:ignite.engine.engine.Engine:Epoch[23] Complete. Time taken: 00:12:03
+epoch: 23
+INFO:Trainer:Epoch 23 done.Time per batch: 635.837[s] Speed: 13.0[samples/s]
+INFO:Trainer:Epoch[24] Iteration[2/395] Loss 0.1537067
+INFO:Trainer:Epoch[24] Iteration[13/395] Loss 0.1693195
+INFO:Trainer:Epoch[24] Iteration[24/395] Loss 0.1719414
+INFO:Trainer:Epoch[24] Iteration[35/395] Loss 0.1811015
+INFO:Trainer:Epoch[24] Iteration[46/395] Loss 0.1826403
+INFO:Trainer:Epoch[24] Iteration[57/395] Loss 0.1841628
+INFO:Trainer:Epoch[24] Iteration[68/395] Loss 0.1909259
+INFO:Trainer:Epoch[24] Iteration[79/395] Loss 0.1990068
+INFO:Trainer:Epoch[24] Iteration[90/395] Loss 0.2079904
+INFO:Trainer:Epoch[24] Iteration[101/395] Loss 0.2165711
+INFO:Trainer:Epoch[24] Iteration[112/395] Loss 0.2177157
+INFO:Trainer:Epoch[24] Iteration[123/395] Loss 0.2150668
+INFO:Trainer:Epoch[24] Iteration[134/395] Loss 0.2060491
+INFO:Trainer:Epoch[24] Iteration[145/395] Loss 0.2039312
+INFO:Trainer:Epoch[24] Iteration[156/395] Loss 0.2108186
+INFO:Trainer:Epoch[24] Iteration[167/395] Loss 0.2103915
+INFO:Trainer:Epoch[24] Iteration[178/395] Loss 0.2165058
+INFO:Trainer:Epoch[24] Iteration[189/395] Loss 0.2232834
+INFO:Trainer:Epoch[24] Iteration[200/395] Loss 0.2254673
+INFO:Trainer:Epoch[24] Iteration[211/395] Loss 0.2163649
+INFO:Trainer:Epoch[24] Iteration[222/395] Loss 0.2202675
+INFO:Trainer:Epoch[24] Iteration[233/395] Loss 0.2176774
+INFO:Trainer:Epoch[24] Iteration[244/395] Loss 0.2151531
+INFO:Trainer:Epoch[24] Iteration[255/395] Loss 0.2214646
+INFO:Trainer:Epoch[24] Iteration[266/395] Loss 0.2255884
+INFO:Trainer:Epoch[24] Iteration[277/395] Loss 0.2219215
+INFO:Trainer:Epoch[24] Iteration[288/395] Loss 0.2218614
+INFO:Trainer:Epoch[24] Iteration[299/395] Loss 0.2329414
+INFO:Trainer:Epoch[24] Iteration[310/395] Loss 0.2308969
+INFO:Trainer:Epoch[24] Iteration[321/395] Loss 0.2326595
+INFO:Trainer:Epoch[24] Iteration[332/395] Loss 0.2399545
+INFO:Trainer:Epoch[24] Iteration[343/395] Loss 0.2332789
+INFO:Trainer:Epoch[24] Iteration[354/395] Loss 0.2302278
+INFO:Trainer:Epoch[24] Iteration[365/395] Loss 0.2269295
+INFO:Trainer:Epoch[24] Iteration[376/395] Loss 0.2265525
+INFO:Trainer:Epoch[24] Iteration[387/395] Loss 0.2217476
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:15
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:16
+INFO:Trainer:Validation Result - Epoch: 24 Avg Pixel Accuracy: 0.6724493 
+9.999999999999998e-05 9.829646168532195e-05
+INFO:ignite.engine.engine.Engine:Epoch[24] Complete. Time taken: 00:12:51
+epoch: 24
+INFO:Trainer:Epoch 24 done.Time per batch: 687.832[s] Speed: 12.1[samples/s]
+INFO:Trainer:Epoch[25] Iteration[3/395] Loss 0.2031887
+INFO:Trainer:Epoch[25] Iteration[14/395] Loss 0.2048538
+INFO:Trainer:Epoch[25] Iteration[25/395] Loss 0.2105465
+INFO:Trainer:Epoch[25] Iteration[36/395] Loss 0.2177548
+INFO:Trainer:Epoch[25] Iteration[47/395] Loss 0.2123587
+INFO:Trainer:Epoch[25] Iteration[58/395] Loss 0.2097574
+INFO:Trainer:Epoch[25] Iteration[69/395] Loss 0.2115890
+INFO:Trainer:Epoch[25] Iteration[80/395] Loss 0.2117610
+INFO:Trainer:Epoch[25] Iteration[91/395] Loss 0.2106393
+INFO:Trainer:Epoch[25] Iteration[102/395] Loss 0.2199481
+INFO:Trainer:Epoch[25] Iteration[113/395] Loss 0.2216172
+INFO:Trainer:Epoch[25] Iteration[124/395] Loss 0.2233242
+INFO:Trainer:Epoch[25] Iteration[135/395] Loss 0.2229583
+INFO:Trainer:Epoch[25] Iteration[146/395] Loss 0.2235993
+INFO:Trainer:Epoch[25] Iteration[157/395] Loss 0.2221960
+INFO:Trainer:Epoch[25] Iteration[168/395] Loss 0.2274617
+INFO:Trainer:Epoch[25] Iteration[179/395] Loss 0.2256879
+INFO:Trainer:Epoch[25] Iteration[190/395] Loss 0.2213060
+INFO:Trainer:Epoch[25] Iteration[201/395] Loss 0.2160020
+INFO:Trainer:Epoch[25] Iteration[212/395] Loss 0.2098447
+INFO:Trainer:Epoch[25] Iteration[223/395] Loss 0.2099323
+INFO:Trainer:Epoch[25] Iteration[234/395] Loss 0.2143933
+INFO:Trainer:Epoch[25] Iteration[245/395] Loss 0.2100185
+INFO:Trainer:Epoch[25] Iteration[256/395] Loss 0.2160489
+INFO:Trainer:Epoch[25] Iteration[267/395] Loss 0.2125652
+INFO:Trainer:Epoch[25] Iteration[278/395] Loss 0.2061067
+INFO:Trainer:Epoch[25] Iteration[289/395] Loss 0.2049223
+INFO:Trainer:Epoch[25] Iteration[300/395] Loss 0.2083430
+INFO:Trainer:Epoch[25] Iteration[311/395] Loss 0.2053457
+INFO:Trainer:Epoch[25] Iteration[322/395] Loss 0.2108729
+INFO:Trainer:Epoch[25] Iteration[333/395] Loss 0.2046025
+INFO:Trainer:Epoch[25] Iteration[344/395] Loss 0.2047638
+INFO:Trainer:Epoch[25] Iteration[355/395] Loss 0.2076470
+INFO:Trainer:Epoch[25] Iteration[366/395] Loss 0.2070963
+INFO:Trainer:Epoch[25] Iteration[377/395] Loss 0.2038835
+INFO:Trainer:Epoch[25] Iteration[388/395] Loss 0.2059155
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:18
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:19
+INFO:Trainer:Validation Result - Epoch: 25 Avg Pixel Accuracy: 0.6898540 
+9.829646168532194e-05 9.999999999999998e-05
+INFO:ignite.engine.engine.Engine:Epoch[25] Complete. Time taken: 00:12:11
+epoch: 25
+INFO:Trainer:Epoch 25 done.Time per batch: 645.343[s] Speed: 12.9[samples/s]
+INFO:Trainer:Epoch[26] Iteration[4/395] Loss 0.1796712
+INFO:Trainer:Epoch[26] Iteration[15/395] Loss 0.1898943
+INFO:Trainer:Epoch[26] Iteration[26/395] Loss 0.1961582
+INFO:Trainer:Epoch[26] Iteration[37/395] Loss 0.2080391
+INFO:Trainer:Epoch[26] Iteration[48/395] Loss 0.2055595
+INFO:Trainer:Epoch[26] Iteration[59/395] Loss 0.2060756
+INFO:Trainer:Epoch[26] Iteration[70/395] Loss 0.2021240
+INFO:Trainer:Epoch[26] Iteration[81/395] Loss 0.2083929
+INFO:Trainer:Epoch[26] Iteration[92/395] Loss 0.2110506
+INFO:Trainer:Epoch[26] Iteration[103/395] Loss 0.2089090
+INFO:Trainer:Epoch[26] Iteration[114/395] Loss 0.2083816
+INFO:Trainer:Epoch[26] Iteration[125/395] Loss 0.2143367
+INFO:Trainer:Epoch[26] Iteration[136/395] Loss 0.2128747
+INFO:Trainer:Epoch[26] Iteration[147/395] Loss 0.2047282
+INFO:Trainer:Epoch[26] Iteration[158/395] Loss 0.2049726
+INFO:Trainer:Epoch[26] Iteration[169/395] Loss 0.2063081
+INFO:Trainer:Epoch[26] Iteration[180/395] Loss 0.2057378
+INFO:Trainer:Epoch[26] Iteration[191/395] Loss 0.1961465
+INFO:Trainer:Epoch[26] Iteration[202/395] Loss 0.2000245
+INFO:Trainer:Epoch[26] Iteration[213/395] Loss 0.2040415
+INFO:Trainer:Epoch[26] Iteration[224/395] Loss 0.1996400
+INFO:Trainer:Epoch[26] Iteration[235/395] Loss 0.2090619
+INFO:Trainer:Epoch[26] Iteration[246/395] Loss 0.2031607
+INFO:Trainer:Epoch[26] Iteration[257/395] Loss 0.2110869
+INFO:Trainer:Epoch[26] Iteration[268/395] Loss 0.2180126
+INFO:Trainer:Epoch[26] Iteration[279/395] Loss 0.2176005
+INFO:Trainer:Epoch[26] Iteration[290/395] Loss 0.2166041
+INFO:Trainer:Epoch[26] Iteration[301/395] Loss 0.2142422
+INFO:Trainer:Epoch[26] Iteration[312/395] Loss 0.2069672
+INFO:Trainer:Epoch[26] Iteration[323/395] Loss 0.2014147
+INFO:Trainer:Epoch[26] Iteration[334/395] Loss 0.2026282
+INFO:Trainer:Epoch[26] Iteration[345/395] Loss 0.2012059
+INFO:Trainer:Epoch[26] Iteration[356/395] Loss 0.2044177
+INFO:Trainer:Epoch[26] Iteration[367/395] Loss 0.1983045
+INFO:Trainer:Epoch[26] Iteration[378/395] Loss 0.2091414
+INFO:Trainer:Epoch[26] Iteration[389/395] Loss 0.2037129
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:17
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:18
+INFO:Trainer:Validation Result - Epoch: 26 Avg Pixel Accuracy: 0.6985153 
+9.330194006220299e-05 9.829646168532194e-05
+INFO:ignite.engine.engine.Engine:Epoch[26] Complete. Time taken: 00:12:17
+epoch: 26
+INFO:Trainer:Epoch 26 done.Time per batch: 652.026[s] Speed: 12.7[samples/s]
+INFO:Trainer:Epoch[27] Iteration[5/395] Loss 0.1751029
+INFO:Trainer:Epoch[27] Iteration[16/395] Loss 0.1794346
+INFO:Trainer:Epoch[27] Iteration[27/395] Loss 0.1861175
+INFO:Trainer:Epoch[27] Iteration[38/395] Loss 0.1912015
+INFO:Trainer:Epoch[27] Iteration[49/395] Loss 0.1925449
+INFO:Trainer:Epoch[27] Iteration[60/395] Loss 0.1942583
+INFO:Trainer:Epoch[27] Iteration[71/395] Loss 0.1999725
+INFO:Trainer:Epoch[27] Iteration[82/395] Loss 0.1932986
+INFO:Trainer:Epoch[27] Iteration[93/395] Loss 0.1988390
+INFO:Trainer:Epoch[27] Iteration[104/395] Loss 0.1904211
+INFO:Trainer:Epoch[27] Iteration[115/395] Loss 0.1945604
+INFO:Trainer:Epoch[27] Iteration[126/395] Loss 0.1906815
+INFO:Trainer:Epoch[27] Iteration[137/395] Loss 0.1980973
+INFO:Trainer:Epoch[27] Iteration[148/395] Loss 0.2055350
+INFO:Trainer:Epoch[27] Iteration[159/395] Loss 0.2058583
+INFO:Trainer:Epoch[27] Iteration[170/395] Loss 0.2032701
+INFO:Trainer:Epoch[27] Iteration[181/395] Loss 0.2030471
+INFO:Trainer:Epoch[27] Iteration[192/395] Loss 0.1981046
+INFO:Trainer:Epoch[27] Iteration[203/395] Loss 0.2026169
+INFO:Trainer:Epoch[27] Iteration[214/395] Loss 0.2055387
+INFO:Trainer:Epoch[27] Iteration[225/395] Loss 0.2050344
+INFO:Trainer:Epoch[27] Iteration[236/395] Loss 0.2064367
+INFO:Trainer:Epoch[27] Iteration[247/395] Loss 0.2047931
+INFO:Trainer:Epoch[27] Iteration[258/395] Loss 0.2099597
+INFO:Trainer:Epoch[27] Iteration[269/395] Loss 0.2112045
+INFO:Trainer:Epoch[27] Iteration[280/395] Loss 0.2103867
+INFO:Trainer:Epoch[27] Iteration[291/395] Loss 0.2050652
+INFO:Trainer:Epoch[27] Iteration[302/395] Loss 0.2103014
+INFO:Trainer:Epoch[27] Iteration[313/395] Loss 0.2110254
+INFO:Trainer:Epoch[27] Iteration[324/395] Loss 0.2124609
+INFO:Trainer:Epoch[27] Iteration[335/395] Loss 0.2119292
+INFO:Trainer:Epoch[27] Iteration[346/395] Loss 0.2114344
+INFO:Trainer:Epoch[27] Iteration[357/395] Loss 0.2121954
+INFO:Trainer:Epoch[27] Iteration[368/395] Loss 0.2121352
+INFO:Trainer:Epoch[27] Iteration[379/395] Loss 0.2118116
+INFO:Trainer:Epoch[27] Iteration[390/395] Loss 0.2106442
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:17
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:18
+INFO:Trainer:Validation Result - Epoch: 27 Avg Pixel Accuracy: 0.6825399 
+8.535680352542143e-05 9.330194006220299e-05
+INFO:ignite.engine.engine.Engine:Epoch[27] Complete. Time taken: 00:12:14
+epoch: 27
+INFO:Trainer:Epoch 27 done.Time per batch: 648.048[s] Speed: 12.8[samples/s]
+INFO:Trainer:Epoch[28] Iteration[6/395] Loss 0.2395071
+INFO:Trainer:Epoch[28] Iteration[17/395] Loss 0.2234451
+INFO:Trainer:Epoch[28] Iteration[28/395] Loss 0.2180064
+INFO:Trainer:Epoch[28] Iteration[39/395] Loss 0.2082360
+INFO:Trainer:Epoch[28] Iteration[50/395] Loss 0.2000042
+INFO:Trainer:Epoch[28] Iteration[61/395] Loss 0.1999964
+INFO:Trainer:Epoch[28] Iteration[72/395] Loss 0.1998321
+INFO:Trainer:Epoch[28] Iteration[83/395] Loss 0.1973571
+INFO:Trainer:Epoch[28] Iteration[94/395] Loss 0.1961602
+INFO:Trainer:Epoch[28] Iteration[105/395] Loss 0.1981620
+INFO:Trainer:Epoch[28] Iteration[116/395] Loss 0.1920572
+INFO:Trainer:Epoch[28] Iteration[127/395] Loss 0.1989853
+INFO:Trainer:Epoch[28] Iteration[138/395] Loss 0.2001215
+INFO:Trainer:Epoch[28] Iteration[149/395] Loss 0.2037628
+INFO:Trainer:Epoch[28] Iteration[160/395] Loss 0.2029564
+INFO:Trainer:Epoch[28] Iteration[171/395] Loss 0.2022258
+INFO:Trainer:Epoch[28] Iteration[182/395] Loss 0.2080784
+INFO:Trainer:Epoch[28] Iteration[193/395] Loss 0.2071745
+INFO:Trainer:Epoch[28] Iteration[204/395] Loss 0.2127639
+INFO:Trainer:Epoch[28] Iteration[215/395] Loss 0.2123541
+INFO:Trainer:Epoch[28] Iteration[226/395] Loss 0.2079268
+INFO:Trainer:Epoch[28] Iteration[237/395] Loss 0.2102595
+INFO:Trainer:Epoch[28] Iteration[248/395] Loss 0.2084358
+INFO:Trainer:Epoch[28] Iteration[259/395] Loss 0.1992679
+INFO:Trainer:Epoch[28] Iteration[270/395] Loss 0.1996351
+INFO:Trainer:Epoch[28] Iteration[281/395] Loss 0.1972985
+INFO:Trainer:Epoch[28] Iteration[292/395] Loss 0.1930231
+INFO:Trainer:Epoch[28] Iteration[303/395] Loss 0.1924189
+INFO:Trainer:Epoch[28] Iteration[314/395] Loss 0.1992651
+INFO:Trainer:Epoch[28] Iteration[325/395] Loss 0.2045615
+INFO:Trainer:Epoch[28] Iteration[336/395] Loss 0.2035492
+INFO:Trainer:Epoch[28] Iteration[347/395] Loss 0.1986956
+INFO:Trainer:Epoch[28] Iteration[358/395] Loss 0.1992365
+INFO:Trainer:Epoch[28] Iteration[369/395] Loss 0.2008380
+INFO:Trainer:Epoch[28] Iteration[380/395] Loss 0.2084206
+INFO:Trainer:Epoch[28] Iteration[391/395] Loss 0.2059404
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:17
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:19
+INFO:Trainer:Validation Result - Epoch: 28 Avg Pixel Accuracy: 0.7052590 
+7.50025e-05 8.535680352542143e-05
+INFO:ignite.engine.engine.Engine:Epoch[28] Complete. Time taken: 00:12:08
+epoch: 28
+INFO:Trainer:Epoch 28 done.Time per batch: 641.694[s] Speed: 12.9[samples/s]
+INFO:Trainer:Epoch[29] Iteration[7/395] Loss 0.2457469
+INFO:Trainer:Epoch[29] Iteration[18/395] Loss 0.2272899
+INFO:Trainer:Epoch[29] Iteration[29/395] Loss 0.2247256
+INFO:Trainer:Epoch[29] Iteration[40/395] Loss 0.2219656
+INFO:Trainer:Epoch[29] Iteration[51/395] Loss 0.2145709
+INFO:Trainer:Epoch[29] Iteration[62/395] Loss 0.2085071
+INFO:Trainer:Epoch[29] Iteration[73/395] Loss 0.2152399
+INFO:Trainer:Epoch[29] Iteration[84/395] Loss 0.2076354
+INFO:Trainer:Epoch[29] Iteration[95/395] Loss 0.2069575
+INFO:Trainer:Epoch[29] Iteration[106/395] Loss 0.1971105
+INFO:Trainer:Epoch[29] Iteration[117/395] Loss 0.1886340
+INFO:Trainer:Epoch[29] Iteration[128/395] Loss 0.1854555
+INFO:Trainer:Epoch[29] Iteration[139/395] Loss 0.1839971
+INFO:Trainer:Epoch[29] Iteration[150/395] Loss 0.1848436
+INFO:Trainer:Epoch[29] Iteration[161/395] Loss 0.1866385
+INFO:Trainer:Epoch[29] Iteration[172/395] Loss 0.1860088
+INFO:Trainer:Epoch[29] Iteration[183/395] Loss 0.1902020
+INFO:Trainer:Epoch[29] Iteration[194/395] Loss 0.1897078
+INFO:Trainer:Epoch[29] Iteration[205/395] Loss 0.1919329
+INFO:Trainer:Epoch[29] Iteration[216/395] Loss 0.1934063
+INFO:Trainer:Epoch[29] Iteration[227/395] Loss 0.1950050
+INFO:Trainer:Epoch[29] Iteration[238/395] Loss 0.1974024
+INFO:Trainer:Epoch[29] Iteration[249/395] Loss 0.1980138
+INFO:Trainer:Epoch[29] Iteration[260/395] Loss 0.1969259
+INFO:Trainer:Epoch[29] Iteration[271/395] Loss 0.1917259
+INFO:Trainer:Epoch[29] Iteration[282/395] Loss 0.1900449
+INFO:Trainer:Epoch[29] Iteration[293/395] Loss 0.1920866
+INFO:Trainer:Epoch[29] Iteration[304/395] Loss 0.1921595
+INFO:Trainer:Epoch[29] Iteration[315/395] Loss 0.1901561
+INFO:Trainer:Epoch[29] Iteration[326/395] Loss 0.1870833
+INFO:Trainer:Epoch[29] Iteration[337/395] Loss 0.1823220
+INFO:Trainer:Epoch[29] Iteration[348/395] Loss 0.1818557
+INFO:Trainer:Epoch[29] Iteration[359/395] Loss 0.1840449
+INFO:Trainer:Epoch[29] Iteration[370/395] Loss 0.1906597
+INFO:Trainer:Epoch[29] Iteration[381/395] Loss 0.1909877
+INFO:Trainer:Epoch[29] Iteration[392/395] Loss 0.1913964
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:16
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:18
+INFO:Trainer:Validation Result - Epoch: 29 Avg Pixel Accuracy: 0.6700831 
+6.294465815990051e-05 7.50025e-05
+INFO:ignite.engine.engine.Engine:Epoch[29] Complete. Time taken: 00:12:04
+epoch: 29
+INFO:Trainer:Epoch 29 done.Time per batch: 639.249[s] Speed: 13.0[samples/s]
+INFO:Trainer:Epoch[30] Iteration[8/395] Loss 0.1453483
+INFO:Trainer:Epoch[30] Iteration[19/395] Loss 0.1550337
+INFO:Trainer:Epoch[30] Iteration[30/395] Loss 0.1577407
+INFO:Trainer:Epoch[30] Iteration[41/395] Loss 0.1630347
+INFO:Trainer:Epoch[30] Iteration[52/395] Loss 0.1647280
+INFO:Trainer:Epoch[30] Iteration[63/395] Loss 0.1658733
+INFO:Trainer:Epoch[30] Iteration[74/395] Loss 0.1685769
+INFO:Trainer:Epoch[30] Iteration[85/395] Loss 0.1708321
+INFO:Trainer:Epoch[30] Iteration[96/395] Loss 0.1724256
+INFO:Trainer:Epoch[30] Iteration[107/395] Loss 0.1768922
+INFO:Trainer:Epoch[30] Iteration[118/395] Loss 0.1785308
+INFO:Trainer:Epoch[30] Iteration[129/395] Loss 0.1845704
+INFO:Trainer:Epoch[30] Iteration[140/395] Loss 0.1924051
+INFO:Trainer:Epoch[30] Iteration[151/395] Loss 0.1976848
+INFO:Trainer:Epoch[30] Iteration[162/395] Loss 0.1906873
+INFO:Trainer:Epoch[30] Iteration[173/395] Loss 0.1919903
+INFO:Trainer:Epoch[30] Iteration[184/395] Loss 0.1884938
+INFO:Trainer:Epoch[30] Iteration[195/395] Loss 0.1812876
+INFO:Trainer:Epoch[30] Iteration[206/395] Loss 0.1800627
+INFO:Trainer:Epoch[30] Iteration[217/395] Loss 0.1811356
+INFO:Trainer:Epoch[30] Iteration[228/395] Loss 0.1796022
+INFO:Trainer:Epoch[30] Iteration[239/395] Loss 0.1845436
+INFO:Trainer:Epoch[30] Iteration[250/395] Loss 0.1850186
+INFO:Trainer:Epoch[30] Iteration[261/395] Loss 0.1832958
+INFO:Trainer:Epoch[30] Iteration[272/395] Loss 0.1842790
+INFO:Trainer:Epoch[30] Iteration[283/395] Loss 0.1858737
+INFO:Trainer:Epoch[30] Iteration[294/395] Loss 0.1827416
+INFO:Trainer:Epoch[30] Iteration[305/395] Loss 0.1828234
+INFO:Trainer:Epoch[30] Iteration[316/395] Loss 0.1833521
+INFO:Trainer:Epoch[30] Iteration[327/395] Loss 0.1877453
+INFO:Trainer:Epoch[30] Iteration[338/395] Loss 0.1831836
+INFO:Trainer:Epoch[30] Iteration[349/395] Loss 0.1861026
+INFO:Trainer:Epoch[30] Iteration[360/395] Loss 0.1841430
+INFO:Trainer:Epoch[30] Iteration[371/395] Loss 0.1874765
+INFO:Trainer:Epoch[30] Iteration[382/395] Loss 0.1917077
+INFO:Trainer:Epoch[30] Iteration[393/395] Loss 0.1885179
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:16
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:17
+INFO:Trainer:Validation Result - Epoch: 30 Avg Pixel Accuracy: 0.6696351 
+5.000500000000005e-05 6.294465815990051e-05
+INFO:ignite.engine.engine.Engine:Epoch[30] Complete. Time taken: 00:12:13
+epoch: 30
+INFO:Trainer:Epoch 30 done.Time per batch: 648.229[s] Speed: 12.8[samples/s]
+INFO:Trainer:Epoch[31] Iteration[9/395] Loss 0.2208324
+INFO:Trainer:Epoch[31] Iteration[20/395] Loss 0.2152790
+INFO:Trainer:Epoch[31] Iteration[31/395] Loss 0.2015157
+INFO:Trainer:Epoch[31] Iteration[42/395] Loss 0.2011631
+INFO:Trainer:Epoch[31] Iteration[53/395] Loss 0.1960228
+INFO:Trainer:Epoch[31] Iteration[64/395] Loss 0.1923002
+INFO:Trainer:Epoch[31] Iteration[75/395] Loss 0.1847071
+INFO:Trainer:Epoch[31] Iteration[86/395] Loss 0.1783381
+INFO:Trainer:Epoch[31] Iteration[97/395] Loss 0.1854818
+INFO:Trainer:Epoch[31] Iteration[108/395] Loss 0.1836581
+INFO:Trainer:Epoch[31] Iteration[119/395] Loss 0.1772943
+INFO:Trainer:Epoch[31] Iteration[130/395] Loss 0.1780721
+INFO:Trainer:Epoch[31] Iteration[141/395] Loss 0.1824558
+INFO:Trainer:Epoch[31] Iteration[152/395] Loss 0.1829932
+INFO:Trainer:Epoch[31] Iteration[163/395] Loss 0.1762717
+INFO:Trainer:Epoch[31] Iteration[174/395] Loss 0.1733840
+INFO:Trainer:Epoch[31] Iteration[185/395] Loss 0.1736529
+INFO:Trainer:Epoch[31] Iteration[196/395] Loss 0.1708122
+INFO:Trainer:Epoch[31] Iteration[207/395] Loss 0.1748321
+INFO:Trainer:Epoch[31] Iteration[218/395] Loss 0.1724182
+INFO:Trainer:Epoch[31] Iteration[229/395] Loss 0.1697892
+INFO:Trainer:Epoch[31] Iteration[240/395] Loss 0.1738019
+INFO:Trainer:Epoch[31] Iteration[251/395] Loss 0.1687392
+INFO:Trainer:Epoch[31] Iteration[262/395] Loss 0.1622442
+INFO:Trainer:Epoch[31] Iteration[273/395] Loss 0.1676089
+INFO:Trainer:Epoch[31] Iteration[284/395] Loss 0.1625436
+INFO:Trainer:Epoch[31] Iteration[295/395] Loss 0.1670396
+INFO:Trainer:Epoch[31] Iteration[306/395] Loss 0.1663145
+INFO:Trainer:Epoch[31] Iteration[317/395] Loss 0.1732245
+INFO:Trainer:Epoch[31] Iteration[328/395] Loss 0.1764692
+INFO:Trainer:Epoch[31] Iteration[339/395] Loss 0.1737300
+INFO:Trainer:Epoch[31] Iteration[350/395] Loss 0.1710235
+INFO:Trainer:Epoch[31] Iteration[361/395] Loss 0.1749653
+INFO:Trainer:Epoch[31] Iteration[372/395] Loss 0.1746095
+INFO:Trainer:Epoch[31] Iteration[383/395] Loss 0.1743398
+INFO:Trainer:Epoch[31] Iteration[394/395] Loss 0.1764971
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:17
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:18
+INFO:Trainer:Validation Result - Epoch: 31 Avg Pixel Accuracy: 0.6829142 
+3.70653418400995e-05 5.000500000000005e-05
+INFO:ignite.engine.engine.Engine:Epoch[31] Complete. Time taken: 00:12:23
+epoch: 31
+INFO:Trainer:Epoch 31 done.Time per batch: 657.563[s] Speed: 12.6[samples/s]
+INFO:Trainer:Epoch[32] Iteration[10/395] Loss 0.1254025
+INFO:Trainer:Epoch[32] Iteration[21/395] Loss 0.1304950
+INFO:Trainer:Epoch[32] Iteration[32/395] Loss 0.1362314
+INFO:Trainer:Epoch[32] Iteration[43/395] Loss 0.1413917
+INFO:Trainer:Epoch[32] Iteration[54/395] Loss 0.1445998
+INFO:Trainer:Epoch[32] Iteration[65/395] Loss 0.1452026
+INFO:Trainer:Epoch[32] Iteration[76/395] Loss 0.1445761
+INFO:Trainer:Epoch[32] Iteration[87/395] Loss 0.1490139
+INFO:Trainer:Epoch[32] Iteration[98/395] Loss 0.1521996
+INFO:Trainer:Epoch[32] Iteration[109/395] Loss 0.1499269
+INFO:Trainer:Epoch[32] Iteration[120/395] Loss 0.1509729
+INFO:Trainer:Epoch[32] Iteration[131/395] Loss 0.1501887
+INFO:Trainer:Epoch[32] Iteration[142/395] Loss 0.1504729
+INFO:Trainer:Epoch[32] Iteration[153/395] Loss 0.1502929
+INFO:Trainer:Epoch[32] Iteration[164/395] Loss 0.1507138
+INFO:Trainer:Epoch[32] Iteration[175/395] Loss 0.1519277
+INFO:Trainer:Epoch[32] Iteration[186/395] Loss 0.1560065
+INFO:Trainer:Epoch[32] Iteration[197/395] Loss 0.1598881
+INFO:Trainer:Epoch[32] Iteration[208/395] Loss 0.1656226
+INFO:Trainer:Epoch[32] Iteration[219/395] Loss 0.1645045
+INFO:Trainer:Epoch[32] Iteration[230/395] Loss 0.1624832
+INFO:Trainer:Epoch[32] Iteration[241/395] Loss 0.1633582
+INFO:Trainer:Epoch[32] Iteration[252/395] Loss 0.1607915
+INFO:Trainer:Epoch[32] Iteration[263/395] Loss 0.1590370
+INFO:Trainer:Epoch[32] Iteration[274/395] Loss 0.1582250
+INFO:Trainer:Epoch[32] Iteration[285/395] Loss 0.1590876
+INFO:Trainer:Epoch[32] Iteration[296/395] Loss 0.1619389
+INFO:Trainer:Epoch[32] Iteration[307/395] Loss 0.1663580
+INFO:Trainer:Epoch[32] Iteration[318/395] Loss 0.1656868
+INFO:Trainer:Epoch[32] Iteration[329/395] Loss 0.1639247
+INFO:Trainer:Epoch[32] Iteration[340/395] Loss 0.1641146
+INFO:Trainer:Epoch[32] Iteration[351/395] Loss 0.1584042
+INFO:Trainer:Epoch[32] Iteration[362/395] Loss 0.1622369
+INFO:Trainer:Epoch[32] Iteration[373/395] Loss 0.1628754
+INFO:Trainer:Epoch[32] Iteration[384/395] Loss 0.1646710
+INFO:Trainer:Epoch[32] Iteration[395/395] Loss 0.1629785
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:18
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:19
+INFO:Trainer:Validation Result - Epoch: 32 Avg Pixel Accuracy: 0.6785885 
+2.5007500000000038e-05 3.70653418400995e-05
+INFO:ignite.engine.engine.Engine:Epoch[32] Complete. Time taken: 00:12:08
+epoch: 32
+INFO:Trainer:Epoch 32 done.Time per batch: 642.061[s] Speed: 12.9[samples/s]
+INFO:Trainer:Epoch[33] Iteration[11/395] Loss 0.1292662
+INFO:Trainer:Epoch[33] Iteration[22/395] Loss 0.1317706
+INFO:Trainer:Epoch[33] Iteration[33/395] Loss 0.1364573
+INFO:Trainer:Epoch[33] Iteration[44/395] Loss 0.1383632
+INFO:Trainer:Epoch[33] Iteration[55/395] Loss 0.1448813
+INFO:Trainer:Epoch[33] Iteration[66/395] Loss 0.1462727
+INFO:Trainer:Epoch[33] Iteration[77/395] Loss 0.1488244
+INFO:Trainer:Epoch[33] Iteration[88/395] Loss 0.1537262
+INFO:Trainer:Epoch[33] Iteration[99/395] Loss 0.1538436
+INFO:Trainer:Epoch[33] Iteration[110/395] Loss 0.1549027
+INFO:Trainer:Epoch[33] Iteration[121/395] Loss 0.1585956
+INFO:Trainer:Epoch[33] Iteration[132/395] Loss 0.1588156
+INFO:Trainer:Epoch[33] Iteration[143/395] Loss 0.1591037
+INFO:Trainer:Epoch[33] Iteration[154/395] Loss 0.1561356
+INFO:Trainer:Epoch[33] Iteration[165/395] Loss 0.1558815
+INFO:Trainer:Epoch[33] Iteration[176/395] Loss 0.1534761
+INFO:Trainer:Epoch[33] Iteration[187/395] Loss 0.1493379
+INFO:Trainer:Epoch[33] Iteration[198/395] Loss 0.1478261
+INFO:Trainer:Epoch[33] Iteration[209/395] Loss 0.1487261
+INFO:Trainer:Epoch[33] Iteration[220/395] Loss 0.1508612
+INFO:Trainer:Epoch[33] Iteration[231/395] Loss 0.1518328
+INFO:Trainer:Epoch[33] Iteration[242/395] Loss 0.1535445
+INFO:Trainer:Epoch[33] Iteration[253/395] Loss 0.1539265
+INFO:Trainer:Epoch[33] Iteration[264/395] Loss 0.1555483
+INFO:Trainer:Epoch[33] Iteration[275/395] Loss 0.1545793
+INFO:Trainer:Epoch[33] Iteration[286/395] Loss 0.1542824
+INFO:Trainer:Epoch[33] Iteration[297/395] Loss 0.1485910
+INFO:Trainer:Epoch[33] Iteration[308/395] Loss 0.1477351
+INFO:Trainer:Epoch[33] Iteration[319/395] Loss 0.1463031
+INFO:Trainer:Epoch[33] Iteration[330/395] Loss 0.1469795
+INFO:Trainer:Epoch[33] Iteration[341/395] Loss 0.1499657
+INFO:Trainer:Epoch[33] Iteration[352/395] Loss 0.1491865
+INFO:Trainer:Epoch[33] Iteration[363/395] Loss 0.1482892
+INFO:Trainer:Epoch[33] Iteration[374/395] Loss 0.1466421
+INFO:Trainer:Epoch[33] Iteration[385/395] Loss 0.1480907
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:17
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:18
+INFO:Trainer:Validation Result - Epoch: 33 Avg Pixel Accuracy: 0.6715707 
+1.4653196474578536e-05 2.5007500000000038e-05
+INFO:ignite.engine.engine.Engine:Epoch[33] Complete. Time taken: 00:12:27
+epoch: 33
+INFO:Trainer:Epoch 33 done.Time per batch: 661.988[s] Speed: 12.5[samples/s]
+INFO:Trainer:Epoch[34] Iteration[1/395] Loss 0.0937436
+INFO:Trainer:Epoch[34] Iteration[12/395] Loss 0.1038073
+INFO:Trainer:Epoch[34] Iteration[23/395] Loss 0.1154270
+INFO:Trainer:Epoch[34] Iteration[34/395] Loss 0.1226210
+INFO:Trainer:Epoch[34] Iteration[45/395] Loss 0.1287772
+INFO:Trainer:Epoch[34] Iteration[56/395] Loss 0.1306557
+INFO:Trainer:Epoch[34] Iteration[67/395] Loss 0.1327259
+INFO:Trainer:Epoch[34] Iteration[78/395] Loss 0.1337649
+INFO:Trainer:Epoch[34] Iteration[89/395] Loss 0.1372431
+INFO:Trainer:Epoch[34] Iteration[100/395] Loss 0.1379525
+INFO:Trainer:Epoch[34] Iteration[111/395] Loss 0.1365427
+INFO:Trainer:Epoch[34] Iteration[122/395] Loss 0.1422649
+INFO:Trainer:Epoch[34] Iteration[133/395] Loss 0.1417748
+INFO:Trainer:Epoch[34] Iteration[144/395] Loss 0.1429694
+INFO:Trainer:Epoch[34] Iteration[155/395] Loss 0.1444520
+INFO:Trainer:Epoch[34] Iteration[166/395] Loss 0.1403892
+INFO:Trainer:Epoch[34] Iteration[177/395] Loss 0.1418124
+INFO:Trainer:Epoch[34] Iteration[188/395] Loss 0.1425723
+INFO:Trainer:Epoch[34] Iteration[199/395] Loss 0.1412805
+INFO:Trainer:Epoch[34] Iteration[210/395] Loss 0.1406671
+INFO:Trainer:Epoch[34] Iteration[221/395] Loss 0.1464168
+INFO:Trainer:Epoch[34] Iteration[232/395] Loss 0.1446418
+INFO:Trainer:Epoch[34] Iteration[243/395] Loss 0.1476580
+INFO:Trainer:Epoch[34] Iteration[254/395] Loss 0.1435448
+INFO:Trainer:Epoch[34] Iteration[265/395] Loss 0.1466905
+INFO:Trainer:Epoch[34] Iteration[276/395] Loss 0.1500889
+INFO:Trainer:Epoch[34] Iteration[287/395] Loss 0.1512205
+INFO:Trainer:Epoch[34] Iteration[298/395] Loss 0.1524360
+INFO:Trainer:Epoch[34] Iteration[309/395] Loss 0.1519738
+INFO:Trainer:Epoch[34] Iteration[320/395] Loss 0.1489226
+INFO:Trainer:Epoch[34] Iteration[331/395] Loss 0.1446431
+INFO:Trainer:Epoch[34] Iteration[342/395] Loss 0.1432674
+INFO:Trainer:Epoch[34] Iteration[353/395] Loss 0.1450814
+INFO:Trainer:Epoch[34] Iteration[364/395] Loss 0.1418089
+INFO:Trainer:Epoch[34] Iteration[375/395] Loss 0.1407385
+INFO:Trainer:Epoch[34] Iteration[386/395] Loss 0.1398599
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:17
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:19
+INFO:Trainer:Validation Result - Epoch: 34 Avg Pixel Accuracy: 0.6663265 
+6.708059937796981e-06 1.4653196474578536e-05
+INFO:ignite.engine.engine.Engine:Epoch[34] Complete. Time taken: 00:12:16
+epoch: 34
+INFO:Trainer:Epoch 34 done.Time per batch: 650.221[s] Speed: 12.8[samples/s]
+INFO:Trainer:Epoch[35] Iteration[2/395] Loss 0.2159199
+INFO:Trainer:Epoch[35] Iteration[13/395] Loss 0.2059429
+INFO:Trainer:Epoch[35] Iteration[24/395] Loss 0.1958566
+INFO:Trainer:Epoch[35] Iteration[35/395] Loss 0.1842257
+INFO:Trainer:Epoch[35] Iteration[46/395] Loss 0.1703929
+INFO:Trainer:Epoch[35] Iteration[57/395] Loss 0.1652577
+INFO:Trainer:Epoch[35] Iteration[68/395] Loss 0.1553224
+INFO:Trainer:Epoch[35] Iteration[79/395] Loss 0.1510777
+INFO:Trainer:Epoch[35] Iteration[90/395] Loss 0.1498845
+INFO:Trainer:Epoch[35] Iteration[101/395] Loss 0.1466996
+INFO:Trainer:Epoch[35] Iteration[112/395] Loss 0.1421690
+INFO:Trainer:Epoch[35] Iteration[123/395] Loss 0.1389039
+INFO:Trainer:Epoch[35] Iteration[134/395] Loss 0.1380197
+INFO:Trainer:Epoch[35] Iteration[145/395] Loss 0.1408839
+INFO:Trainer:Epoch[35] Iteration[156/395] Loss 0.1404643
+INFO:Trainer:Epoch[35] Iteration[167/395] Loss 0.1391286
+INFO:Trainer:Epoch[35] Iteration[178/395] Loss 0.1414234
+INFO:Trainer:Epoch[35] Iteration[189/395] Loss 0.1411298
+INFO:Trainer:Epoch[35] Iteration[200/395] Loss 0.1399126
+INFO:Trainer:Epoch[35] Iteration[211/395] Loss 0.1442724
+INFO:Trainer:Epoch[35] Iteration[222/395] Loss 0.1408737
+INFO:Trainer:Epoch[35] Iteration[233/395] Loss 0.1460879
+INFO:Trainer:Epoch[35] Iteration[244/395] Loss 0.1446138
+INFO:Trainer:Epoch[35] Iteration[255/395] Loss 0.1471250
+INFO:Trainer:Epoch[35] Iteration[266/395] Loss 0.1481669
+INFO:Trainer:Epoch[35] Iteration[277/395] Loss 0.1491807
+INFO:Trainer:Epoch[35] Iteration[288/395] Loss 0.1442127
+INFO:Trainer:Epoch[35] Iteration[299/395] Loss 0.1420867
+INFO:Trainer:Epoch[35] Iteration[310/395] Loss 0.1416430
+INFO:Trainer:Epoch[35] Iteration[321/395] Loss 0.1396850
+INFO:Trainer:Epoch[35] Iteration[332/395] Loss 0.1387857
+INFO:Trainer:Epoch[35] Iteration[343/395] Loss 0.1420467
+INFO:Trainer:Epoch[35] Iteration[354/395] Loss 0.1423331
+INFO:Trainer:Epoch[35] Iteration[365/395] Loss 0.1414454
+INFO:Trainer:Epoch[35] Iteration[376/395] Loss 0.1419498
+INFO:Trainer:Epoch[35] Iteration[387/395] Loss 0.1390162
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:17
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:18
+INFO:Trainer:Validation Result - Epoch: 35 Avg Pixel Accuracy: 0.6739585 
+1.7135383146780298e-06 6.708059937796981e-06
+INFO:ignite.engine.engine.Engine:Epoch[35] Complete. Time taken: 00:12:12
+epoch: 35
+INFO:Trainer:Epoch 35 done.Time per batch: 647.233[s] Speed: 12.8[samples/s]
+INFO:Trainer:Epoch[36] Iteration[3/395] Loss 0.1872141
+INFO:Trainer:Epoch[36] Iteration[14/395] Loss 0.1788808
+INFO:Trainer:Epoch[36] Iteration[25/395] Loss 0.1749970
+INFO:Trainer:Epoch[36] Iteration[36/395] Loss 0.1665782
+INFO:Trainer:Epoch[36] Iteration[47/395] Loss 0.1608910
+INFO:Trainer:Epoch[36] Iteration[58/395] Loss 0.1531104
+INFO:Trainer:Epoch[36] Iteration[69/395] Loss 0.1478620
+INFO:Trainer:Epoch[36] Iteration[80/395] Loss 0.1478740
+INFO:Trainer:Epoch[36] Iteration[91/395] Loss 0.1446001
+INFO:Trainer:Epoch[36] Iteration[102/395] Loss 0.1432915
+INFO:Trainer:Epoch[36] Iteration[113/395] Loss 0.1400814
+INFO:Trainer:Epoch[36] Iteration[124/395] Loss 0.1421390
+INFO:Trainer:Epoch[36] Iteration[135/395] Loss 0.1410547
+INFO:Trainer:Epoch[36] Iteration[146/395] Loss 0.1393500
+INFO:Trainer:Epoch[36] Iteration[157/395] Loss 0.1442708
+INFO:Trainer:Epoch[36] Iteration[168/395] Loss 0.1440578
+INFO:Trainer:Epoch[36] Iteration[179/395] Loss 0.1461602
+INFO:Trainer:Epoch[36] Iteration[190/395] Loss 0.1433151
+INFO:Trainer:Epoch[36] Iteration[201/395] Loss 0.1387909
+INFO:Trainer:Epoch[36] Iteration[212/395] Loss 0.1378765
+INFO:Trainer:Epoch[36] Iteration[223/395] Loss 0.1426233
+INFO:Trainer:Epoch[36] Iteration[234/395] Loss 0.1436086
+INFO:Trainer:Epoch[36] Iteration[245/395] Loss 0.1416914
+INFO:Trainer:Epoch[36] Iteration[256/395] Loss 0.1402147
+INFO:Trainer:Epoch[36] Iteration[267/395] Loss 0.1369791
+INFO:Trainer:Epoch[36] Iteration[278/395] Loss 0.1418274
+INFO:Trainer:Epoch[36] Iteration[289/395] Loss 0.1394603
+INFO:Trainer:Epoch[36] Iteration[300/395] Loss 0.1346357
+INFO:Trainer:Epoch[36] Iteration[311/395] Loss 0.1340453
+INFO:Trainer:Epoch[36] Iteration[322/395] Loss 0.1330741
+INFO:Trainer:Epoch[36] Iteration[333/395] Loss 0.1350110
+INFO:Trainer:Epoch[36] Iteration[344/395] Loss 0.1330228
+INFO:Trainer:Epoch[36] Iteration[355/395] Loss 0.1347720
+INFO:Trainer:Epoch[36] Iteration[366/395] Loss 0.1332994
+INFO:Trainer:Epoch[36] Iteration[377/395] Loss 0.1363104
+INFO:Trainer:Epoch[36] Iteration[388/395] Loss 0.1328678
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:19
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:20
+INFO:Trainer:Validation Result - Epoch: 36 Avg Pixel Accuracy: 0.6660800 
+1e-08 1.7135383146780298e-06
+INFO:ignite.engine.engine.Engine:Epoch[36] Complete. Time taken: 00:12:07
+epoch: 36
+INFO:Trainer:Epoch 36 done.Time per batch: 639.530[s] Speed: 13.0[samples/s]
+INFO:Trainer:Epoch[37] Iteration[4/395] Loss 0.1985525
+INFO:Trainer:Epoch[37] Iteration[15/395] Loss 0.1878773
+INFO:Trainer:Epoch[37] Iteration[26/395] Loss 0.1775827
+INFO:Trainer:Epoch[37] Iteration[37/395] Loss 0.1714092
+INFO:Trainer:Epoch[37] Iteration[48/395] Loss 0.1633243
+INFO:Trainer:Epoch[37] Iteration[59/395] Loss 0.1557443
+INFO:Trainer:Epoch[37] Iteration[70/395] Loss 0.1511474
+INFO:Trainer:Epoch[37] Iteration[81/395] Loss 0.1527533
+INFO:Trainer:Epoch[37] Iteration[92/395] Loss 0.1472735
+INFO:Trainer:Epoch[37] Iteration[103/395] Loss 0.1415871
+INFO:Trainer:Epoch[37] Iteration[114/395] Loss 0.1377425
+INFO:Trainer:Epoch[37] Iteration[125/395] Loss 0.1402404
+INFO:Trainer:Epoch[37] Iteration[136/395] Loss 0.1406054
+INFO:Trainer:Epoch[37] Iteration[147/395] Loss 0.1386493
+INFO:Trainer:Epoch[37] Iteration[158/395] Loss 0.1342909
+INFO:Trainer:Epoch[37] Iteration[169/395] Loss 0.1391831
+INFO:Trainer:Epoch[37] Iteration[180/395] Loss 0.1400182
+INFO:Trainer:Epoch[37] Iteration[191/395] Loss 0.1430971
+INFO:Trainer:Epoch[37] Iteration[202/395] Loss 0.1428575
+INFO:Trainer:Epoch[37] Iteration[213/395] Loss 0.1466583
+INFO:Trainer:Epoch[37] Iteration[224/395] Loss 0.1441758
+INFO:Trainer:Epoch[37] Iteration[235/395] Loss 0.1404855
+INFO:Trainer:Epoch[37] Iteration[246/395] Loss 0.1402988
+INFO:Trainer:Epoch[37] Iteration[257/395] Loss 0.1418639
+INFO:Trainer:Epoch[37] Iteration[268/395] Loss 0.1384611
+INFO:Trainer:Epoch[37] Iteration[279/395] Loss 0.1378428
+INFO:Trainer:Epoch[37] Iteration[290/395] Loss 0.1368796
+INFO:Trainer:Epoch[37] Iteration[301/395] Loss 0.1412754
+INFO:Trainer:Epoch[37] Iteration[312/395] Loss 0.1408178
+INFO:Trainer:Epoch[37] Iteration[323/395] Loss 0.1385292
+INFO:Trainer:Epoch[37] Iteration[334/395] Loss 0.1390576
+INFO:Trainer:Epoch[37] Iteration[345/395] Loss 0.1361438
+INFO:Trainer:Epoch[37] Iteration[356/395] Loss 0.1363117
+INFO:Trainer:Epoch[37] Iteration[367/395] Loss 0.1328917
+INFO:Trainer:Epoch[37] Iteration[378/395] Loss 0.1353244
+INFO:Trainer:Epoch[37] Iteration[389/395] Loss 0.1350169
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:17
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:18
+INFO:Trainer:Validation Result - Epoch: 37 Avg Pixel Accuracy: 0.6826406 
+1.7135383146780298e-06 1e-08
+INFO:ignite.engine.engine.Engine:Epoch[37] Complete. Time taken: 00:12:07
+epoch: 37
+INFO:Trainer:Epoch 37 done.Time per batch: 641.684[s] Speed: 12.9[samples/s]
+INFO:Trainer:Epoch[38] Iteration[5/395] Loss 0.1085543
+INFO:Trainer:Epoch[38] Iteration[16/395] Loss 0.1160031
+INFO:Trainer:Epoch[38] Iteration[27/395] Loss 0.1205546
+INFO:Trainer:Epoch[38] Iteration[38/395] Loss 0.1206998
+INFO:Trainer:Epoch[38] Iteration[49/395] Loss 0.1220408
+INFO:Trainer:Epoch[38] Iteration[60/395] Loss 0.1250229
+INFO:Trainer:Epoch[38] Iteration[71/395] Loss 0.1249993
+INFO:Trainer:Epoch[38] Iteration[82/395] Loss 0.1287630
+INFO:Trainer:Epoch[38] Iteration[93/395] Loss 0.1292413
+INFO:Trainer:Epoch[38] Iteration[104/395] Loss 0.1304634
+INFO:Trainer:Epoch[38] Iteration[115/395] Loss 0.1318905
+INFO:Trainer:Epoch[38] Iteration[126/395] Loss 0.1338110
+INFO:Trainer:Epoch[38] Iteration[137/395] Loss 0.1365096
+INFO:Trainer:Epoch[38] Iteration[148/395] Loss 0.1372886
+INFO:Trainer:Epoch[38] Iteration[159/395] Loss 0.1321078
+INFO:Trainer:Epoch[38] Iteration[170/395] Loss 0.1344779
+INFO:Trainer:Epoch[38] Iteration[181/395] Loss 0.1350914
+INFO:Trainer:Epoch[38] Iteration[192/395] Loss 0.1302656
+INFO:Trainer:Epoch[38] Iteration[203/395] Loss 0.1315713
+INFO:Trainer:Epoch[38] Iteration[214/395] Loss 0.1298011
+INFO:Trainer:Epoch[38] Iteration[225/395] Loss 0.1327129
+INFO:Trainer:Epoch[38] Iteration[236/395] Loss 0.1404650
+INFO:Trainer:Epoch[38] Iteration[247/395] Loss 0.1418494
+INFO:Trainer:Epoch[38] Iteration[258/395] Loss 0.1399637
+INFO:Trainer:Epoch[38] Iteration[269/395] Loss 0.1354882
+INFO:Trainer:Epoch[38] Iteration[280/395] Loss 0.1356240
+INFO:Trainer:Epoch[38] Iteration[291/395] Loss 0.1312045
+INFO:Trainer:Epoch[38] Iteration[302/395] Loss 0.1359979
+INFO:Trainer:Epoch[38] Iteration[313/395] Loss 0.1347076
+INFO:Trainer:Epoch[38] Iteration[324/395] Loss 0.1303348
+INFO:Trainer:Epoch[38] Iteration[335/395] Loss 0.1315219
+INFO:Trainer:Epoch[38] Iteration[346/395] Loss 0.1349245
+INFO:Trainer:Epoch[38] Iteration[357/395] Loss 0.1375696
+INFO:Trainer:Epoch[38] Iteration[368/395] Loss 0.1379595
+INFO:Trainer:Epoch[38] Iteration[379/395] Loss 0.1375632
+INFO:Trainer:Epoch[38] Iteration[390/395] Loss 0.1323551
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:17
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:18
+INFO:Trainer:Validation Result - Epoch: 38 Avg Pixel Accuracy: 0.6712157 
+6.708059937796987e-06 1.7135383146780298e-06
+INFO:ignite.engine.engine.Engine:Epoch[38] Complete. Time taken: 00:12:25
+epoch: 38
+INFO:Trainer:Epoch 38 done.Time per batch: 660.188[s] Speed: 12.6[samples/s]
+INFO:Trainer:Epoch[39] Iteration[6/395] Loss 0.1183348
+INFO:Trainer:Epoch[39] Iteration[17/395] Loss 0.1193966
+INFO:Trainer:Epoch[39] Iteration[28/395] Loss 0.1263733
+INFO:Trainer:Epoch[39] Iteration[39/395] Loss 0.1281378
+INFO:Trainer:Epoch[39] Iteration[50/395] Loss 0.1334875
+INFO:Trainer:Epoch[39] Iteration[61/395] Loss 0.1341137
+INFO:Trainer:Epoch[39] Iteration[72/395] Loss 0.1337398
+INFO:Trainer:Epoch[39] Iteration[83/395] Loss 0.1345989
+INFO:Trainer:Epoch[39] Iteration[94/395] Loss 0.1302805
+INFO:Trainer:Epoch[39] Iteration[105/395] Loss 0.1341666
+INFO:Trainer:Epoch[39] Iteration[116/395] Loss 0.1363668
+INFO:Trainer:Epoch[39] Iteration[127/395] Loss 0.1351441
+INFO:Trainer:Epoch[39] Iteration[138/395] Loss 0.1401015
+INFO:Trainer:Epoch[39] Iteration[149/395] Loss 0.1428007
+INFO:Trainer:Epoch[39] Iteration[160/395] Loss 0.1450306
+INFO:Trainer:Epoch[39] Iteration[171/395] Loss 0.1429346
+INFO:Trainer:Epoch[39] Iteration[182/395] Loss 0.1407781
+INFO:Trainer:Epoch[39] Iteration[193/395] Loss 0.1395388
+INFO:Trainer:Epoch[39] Iteration[204/395] Loss 0.1382962
+INFO:Trainer:Epoch[39] Iteration[215/395] Loss 0.1416365
+INFO:Trainer:Epoch[39] Iteration[226/395] Loss 0.1416320
+INFO:Trainer:Epoch[39] Iteration[237/395] Loss 0.1404845
+INFO:Trainer:Epoch[39] Iteration[248/395] Loss 0.1388123
+INFO:Trainer:Epoch[39] Iteration[259/395] Loss 0.1420247
+INFO:Trainer:Epoch[39] Iteration[270/395] Loss 0.1377558
+INFO:Trainer:Epoch[39] Iteration[281/395] Loss 0.1374843
+INFO:Trainer:Epoch[39] Iteration[292/395] Loss 0.1359821
+INFO:Trainer:Epoch[39] Iteration[303/395] Loss 0.1372932
+INFO:Trainer:Epoch[39] Iteration[314/395] Loss 0.1372768
+INFO:Trainer:Epoch[39] Iteration[325/395] Loss 0.1350732
+INFO:Trainer:Epoch[39] Iteration[336/395] Loss 0.1299237
+INFO:Trainer:Epoch[39] Iteration[347/395] Loss 0.1277590
+INFO:Trainer:Epoch[39] Iteration[358/395] Loss 0.1309125
+INFO:Trainer:Epoch[39] Iteration[369/395] Loss 0.1332831
+INFO:Trainer:Epoch[39] Iteration[380/395] Loss 0.1375859
+INFO:Trainer:Epoch[39] Iteration[391/395] Loss 0.1352190
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:20
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:21
+INFO:Trainer:Validation Result - Epoch: 39 Avg Pixel Accuracy: 0.6727166 
+1.4653196474578559e-05 6.708059937796987e-06
+INFO:ignite.engine.engine.Engine:Epoch[39] Complete. Time taken: 00:12:01
+epoch: 39
+INFO:Trainer:Epoch 39 done.Time per batch: 631.900[s] Speed: 13.1[samples/s]
+INFO:Trainer:Epoch[40] Iteration[7/395] Loss 0.1409267
+INFO:Trainer:Epoch[40] Iteration[18/395] Loss 0.1373753
+INFO:Trainer:Epoch[40] Iteration[29/395] Loss 0.1399388
+INFO:Trainer:Epoch[40] Iteration[40/395] Loss 0.1408077
+INFO:Trainer:Epoch[40] Iteration[51/395] Loss 0.1374841
+INFO:Trainer:Epoch[40] Iteration[62/395] Loss 0.1366755
+INFO:Trainer:Epoch[40] Iteration[73/395] Loss 0.1311292
+INFO:Trainer:Epoch[40] Iteration[84/395] Loss 0.1371467
+INFO:Trainer:Epoch[40] Iteration[95/395] Loss 0.1358116
+INFO:Trainer:Epoch[40] Iteration[106/395] Loss 0.1382920
+INFO:Trainer:Epoch[40] Iteration[117/395] Loss 0.1370128
+INFO:Trainer:Epoch[40] Iteration[128/395] Loss 0.1369632
+INFO:Trainer:Epoch[40] Iteration[139/395] Loss 0.1396263
+INFO:Trainer:Epoch[40] Iteration[150/395] Loss 0.1408911
+INFO:Trainer:Epoch[40] Iteration[161/395] Loss 0.1376545
+INFO:Trainer:Epoch[40] Iteration[172/395] Loss 0.1381986
+INFO:Trainer:Epoch[40] Iteration[183/395] Loss 0.1440271
+INFO:Trainer:Epoch[40] Iteration[194/395] Loss 0.1438879
+INFO:Trainer:Epoch[40] Iteration[205/395] Loss 0.1438504
+INFO:Trainer:Epoch[40] Iteration[216/395] Loss 0.1491576
+INFO:Trainer:Epoch[40] Iteration[227/395] Loss 0.1484010
+INFO:Trainer:Epoch[40] Iteration[238/395] Loss 0.1432198
+INFO:Trainer:Epoch[40] Iteration[249/395] Loss 0.1410524
+INFO:Trainer:Epoch[40] Iteration[260/395] Loss 0.1404907
+INFO:Trainer:Epoch[40] Iteration[271/395] Loss 0.1399481
+INFO:Trainer:Epoch[40] Iteration[282/395] Loss 0.1407980
+INFO:Trainer:Epoch[40] Iteration[293/395] Loss 0.1385954
+INFO:Trainer:Epoch[40] Iteration[304/395] Loss 0.1395629
+INFO:Trainer:Epoch[40] Iteration[315/395] Loss 0.1396684
+INFO:Trainer:Epoch[40] Iteration[326/395] Loss 0.1414297
+INFO:Trainer:Epoch[40] Iteration[337/395] Loss 0.1395356
+INFO:Trainer:Epoch[40] Iteration[348/395] Loss 0.1380485
+INFO:Trainer:Epoch[40] Iteration[359/395] Loss 0.1355618
+INFO:Trainer:Epoch[40] Iteration[370/395] Loss 0.1352136
+INFO:Trainer:Epoch[40] Iteration[381/395] Loss 0.1345544
+INFO:Trainer:Epoch[40] Iteration[392/395] Loss 0.1331790
+INFO:ignite.engine.engine.Engine:Engine run starting with max_epochs=1.
+INFO:ignite.engine.engine.Engine:Epoch[1] Complete. Time taken: 00:01:17
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 00:01:18
+INFO:Trainer:Validation Result - Epoch: 40 Avg Pixel Accuracy: 0.6798265 
+2.5007500000000096e-05 1.4653196474578559e-05
+INFO:ignite.engine.engine.Engine:Epoch[40] Complete. Time taken: 00:12:24
+epoch: 40
+INFO:Trainer:Epoch 40 done.Time per batch: 658.611[s] Speed: 12.6[samples/s]
+INFO:ignite.engine.engine.Engine:Engine run complete. Time taken 08:11:54
+
+
+
+(db) [root@localhost hcj_undergraduate_code]# python snapshot_inference.py
+CONFIG_FILE: 
+DATA:
+  DATALOADER:
+    NUM_WORKERS: 30
+    TRAIN_BATCH_SIZE: 21
+    TRAIN_SHUFFLE: True
+    VAL_BATCH_SIZE: 21
+    VAL_SHUFFLE: False
+  DATASET:
+    train_csv_file: /root/hcj/workspace/cutImage/TrainDataFinal/image_21.csv
+    train_mask_dir: /root/hcj/workspace/cutImage/TrainDataFinal/label/
+    train_root_dir: /root/hcj/workspace/cutImage/TrainDataFinal/image/
+    val_csv_file: /root/hcj/workspace/cutImage/ValData/image_20.csv
+    val_mask_dir: /root/hcj/workspace/cutImage/ValData/label/
+    val_root_dir: /root/hcj/workspace/cutImage/ValData/image/
+  TRANSFORMS:
+    ENABLE_NORMALIZE: True
+    ENABLE_RANDOMCHOICE: True
+    ENABLE_RANDOM_CROP: True
+    Normalize: [(0.485, 0.456, 0.406), (0.229, 0.224, 0.225)]
+    RandomChoice: 1
+    RandomCrop: [1, (512, 512)]
+    TRAIN:
+      GaussianBlur: [0.1, 2]
+      RandomChoce: [0.01, 0.01, 0.01, 0.0]
+      RandomHorizontalFlip: [0.5]
+      RandomVerticalFlip: [0.5]
+      Shift_Padding: [0.1, 0.1, 0.1]
+    VAL:
+      
+ENGINE:
+  
+LOG_PERIOD: 0.03
+MODEL:
+  DEVICE: cuda:0
+  LOAD_PATH: /root/hcj/workspace/test1/models/resnet101-5d3b4d8f.pth
+  NET_NAME: deeplabv3plus_resnet101
+OUTPUT:
+  DIR_NAME: ./output/
+  ENABLE_RECODER: True
+  N_SAVED: 5
+  TRAIN_LOSS: False
+  TRAIN_METRICS: False
+  VAL_LOSS: False
+  VAL_METRICS: True
+SOLVER:
+  Adam_weight_decay: 0
+  CRITERION: LabelSmoothing
+  ENABLE_LR_SCHEDULER: True
+  LEARNING_RATE: 0.0001
+  LR_SCHEDULER: CosineAnnealingLR
+  LR_SCHEDULER_FACTOR: 0.3333333333333333
+  LR_SCHEDULER_PATIENCE: 5
+  LR_SCHEDULER_REPEAT: 6
+  MAX_EPOCHS: 40
+  OPTIMIZER_NAME: Adam
+  SGD_MOMENTUM: 0.9
+  T_max: 12
+TAG: deeplabv3+
+TESTS:
+  
+TOOLS:
+  batch_size: 24
+  csv_file_3: /root/hcj/workspace/cutImage/TestData/image_11.csv
+  csv_file_4: /home/LinHonghui/Datasets/tianchi_jinwei_AI2019/trainset/round2/w1024s1024/val_image_4.csv
+  image_n: 3
+  num_workers: 30
+  root_dir_3_4: /root/hcj/workspace/cutImage/TestData/image/
+  save_path: /root/hcj/workspace/test1/hcj_undergraduate_code/output/savedResult/
+  shuffle: False
+  zeros_3: (68363, 18576)
+  zeros_4: (29003, 35055)
+  zeros_5: (20115, 43073)
+  zeros_6: (21247, 62806)
+UTILS:
+  METRICS: Label_Accuracy_delete_edge
+VAL_PERIOD: 1.0
+load pretrained ResNet101 model
+build model
+[ToTensor(), Normalize(mean=(0.485, 0.456, 0.406),std=(0.229, 0.224, 0.225))]
+  0%|                                                                                   | 0/106 [00:00<?, ?it/s]/root/anaconda3/envs/db/lib/python3.6/site-packages/torch/nn/functional.py:2973: UserWarning: Default upsampling behavior when mode=bilinear is changed to align_corners=False since 0.4.0. Please specify align_corners=True if the old behavior is desired. See the documentation of nn.Upsample for details.
+  "See the documentation of nn.Upsample for details.".format(mode))
+  1%|\ufffd\ufffd                                                                          | 1/106 [00:29<51:52, 29.64s/it  2%|\ufffd\ufffd\ufffd\ufffd                                                                         | 2/106 [00:37<40:02, 23.10s/i  3%|\ufffd\ufffd\ufffd\ufffd                                                                         | 3/106 [00:45<32:05, 18.69s/i  4%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                                        | 4/106 [00:53<26:12, 15.42s/  5%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                                       | 5/106 [01:01<22:11, 13.18s  6%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                                      | 6/106 [01:09<19:30, 11.71  7%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                                      | 7/106 [01:18<17:34, 10.65  8%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                                     | 8/106 [01:26<16:25, 10.0  8%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                                    | 9/106 [01:34<15:10,  9.  9%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                                   | 10/106 [01:42<14:14,  8. 10%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                                  | 11/106 [01:50<13:35,  8 11%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                                 | 12/106 [01:57<13:00,   12%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                                 | 13/106 [02:05<12:34,   13%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                                | 14/106 [02:13<12:14,  14%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                               | 15/106 [02:20<12:01, 15%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                              | 16/106 [02:28<11:55 16%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                              | 17/106 [02:36<11:42 17%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                             | 18/106 [02:44<11:3 18%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                            | 19/106 [02:52<11: 19%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                            | 20/106 [03:00<11: 20%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                           | 21/106 [03:08<11 21%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                          | 22/106 [03:15<1 22%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                          | 23/106 [03:23<1 23%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                         | 24/106 [03:31< 24%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                        | 25/106 [03:39 25%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                       | 26/106 [03:4 25%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                       | 27/106 [03:5 26%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                      | 28/106 [04: 27%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                     | 29/106 [04 28%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                     | 30/106 [04 29%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                    | 31/106 [0 30%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                   | 32/106 [ 31%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                   | 33/106 [ 32%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                  | 34/106  33%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                 | 35/106 34%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                | 36/10 35%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                                | 37/10 36%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                               | 38/1 37%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                              | 39/ 38%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                              | 40/ 39%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                             | 41 40%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                            | 4 41%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                            | 4 42%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                           |  42%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                          | 43%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                          | 44%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                          45%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                        46%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                      47%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                      48%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                    49%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                  50%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                  51%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                                52%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                              53%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                              54%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                            55%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                          56%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                        57%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                        58%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                      58%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                    59%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                    60%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                  61%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                62%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd                63%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd              64%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd            65%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd          66%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd          67%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd        68%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd      69%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd      70%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd    71%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd  72%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd  73%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 74%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 75%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 75%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 76%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 77%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 78%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 79%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 80%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 81%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 82%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 83%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 84%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 85%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 86%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 87%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 88%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 89%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 90%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 91%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 92%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 92%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 93%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 94%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 95%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 96%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 97%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 98%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd 99%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd100%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd100%|\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd| 106/106 [16:59<00:00,  9.62s/it]
+(db) [root@localhost hcj_undergraduate_code]# ls
+config               importer.py                  output                 solver    vis_image_3_predict.jpg
+data                 MIOU                         __pycache__            tools
+engine               model                        README.md              train.py
+image_3_predict.png  ori_vis_image_3_predict.jpg  snapshot_inference.py  util
+(db) [root@localhost hcj_undergraduate_code]# cd util
+(db) [root@localhost util]# ls
+__init__.py        multi_pool_cut_train_10.py           multi_pool_cut_train_1.py   multi_pool_cut_train.py
+metric.py          multi_pool_cut_train_11_csvpng.py    multi_pool_cut_train_20.py  __pycache__
+multi_pool_cut.py  multi_pool_cut_train_11_testData.py  multi_pool_cut_train_21.py  remove_samll_object.py
+(db) [root@localhost util]# python remove_samll_object.py
+------------- class_n : 0 start ------------
+------------- class_n : 1 start ------------
+------------- class_n : 2 start ------------
+------------- class_n : 3 start ------------
+------------- class_n : 4 start ------------
+------------- class_n : 3 finished ------------
+------------- class_n : 4 finished ------------
+------------- class_n : 2 finished ------------
+------------- class_n : 1 finished ------------
+------------- class_n : 0 finished ------------
+(db) [root@localhost util]# cd ..
+(db) [root@localhost hcj_undergraduate_code]# ls
+config  engine       MIOU   output       README.md              solver  train.py
+data    importer.py  model  __pycache__  snapshot_inference.py  tools   util
+(db) [root@localhost hcj_undergraduate_code]# cd MIOU
+(db) [root@localhost MIOU]# ls
+MIOU_report.py  MIOU_test.py
+(db) [root@localhost MIOU]# python MIOU_test.py
+===>Smoke:	80.42
+===>Corn:	76.39
+===>BarleyRice:	83.2
+===>Building:	74.63
+===> mIoU: 78.66
